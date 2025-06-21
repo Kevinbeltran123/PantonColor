@@ -1469,33 +1469,571 @@ footer {
     }
 }
 
-/* Enhanced Color Simulator Styles */
+/* New Realistic Simulator Styles */
 .simulator-section {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: #f5f5f5;
     min-height: 100vh;
-    padding: 60px 0;
+    padding: 0;
+    overflow: hidden;
 }
 
-.simulator-header {
-    text-align: center;
-    margin-bottom: 50px;
+.simulator-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
 }
 
-.simulator-header .section-title {
-    font-size: 2.2rem;
-    color: var(--primary);
+.simulator-layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* Color Palette Sidebar */
+.color-palette-sidebar {
+    width: 320px;
+    background: white;
+    border-right: 1px solid #e0e0e0;
+    overflow-y: auto;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Texture Selection */
+.texture-section {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 20px;
+}
+
+.section-header h4 {
+    font-size: 1rem;
+    color: #333;
     margin-bottom: 15px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-weight: 600;
 }
 
-.subtitle {
-    font-size: 1.1rem;
-    color: var(--text-light);
-    max-width: 600px;
+.texture-options {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.texture-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+}
+
+.texture-option.active {
+    border-color: #e30613;
+    background-color: #fff5f5;
+}
+
+.texture-option:hover {
+    background-color: #f8f9fa;
+}
+
+.texture-preview {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.texture-liso {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.texture-texturizado {
+    background: 
+        radial-gradient(circle at 20% 20%, #ddd 1px, transparent 1px),
+        radial-gradient(circle at 80% 80%, #ddd 1px, transparent 1px),
+        linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background-size: 8px 8px, 8px 8px, 100% 100%;
+}
+
+.texture-granulado {
+    background: 
+        radial-gradient(circle at 25% 25%, #ccc 1px, transparent 1px),
+        radial-gradient(circle at 75% 75%, #ccc 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, #bbb 0.5px, transparent 0.5px),
+        linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background-size: 6px 6px, 6px 6px, 3px 3px, 100% 100%;
+}
+
+.texture-option span {
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Color Selection */
+.color-section {
+    flex: 1;
+}
+
+.color-category {
+    margin-bottom: 20px;
+}
+
+.color-category h5 {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+}
+
+.color-item {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.color-item.active {
+    border-color: #e30613;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #e30613;
+    transform: scale(1.1);
+}
+
+.color-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Action Buttons */
+.simulator-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.action-btn {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.action-btn.primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.action-btn.secondary {
+    background: linear-gradient(135deg, #E30613 0%, #F7931D 100%);
+    color: white;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Room Visualization */
+.room-visualization {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f5f5f5;
+}
+
+.room-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    perspective: 1000px;
+}
+
+.room-3d {
+    width: 600px;
+    height: 400px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(15deg) rotateY(-15deg);
+}
+
+/* 3D Walls */
+.wall {
+    position: absolute;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.wall:hover {
+    opacity: 0.8;
+    box-shadow: 0 0 20px rgba(227, 6, 19, 0.3);
+}
+
+.back-wall {
+    width: 600px;
+    height: 300px;
+    background-color: #FFD700;
+    transform: translateZ(-200px);
+}
+
+.left-wall {
+    width: 200px;
+    height: 300px;
+    background-color: #FFD700;
+    transform: rotateY(90deg) translateZ(0px);
+    transform-origin: left;
+}
+
+.right-wall {
+    width: 200px;
+    height: 300px;
+    background-color: #F5F5F5;
+    transform: rotateY(-90deg) translateZ(-600px);
+    transform-origin: right;
+}
+
+.floor {
+    width: 600px;
+    height: 200px;
+    background: 
+        linear-gradient(45deg, #e8e8e8 25%, transparent 25%),
+        linear-gradient(-45deg, #e8e8e8 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #e8e8e8 75%),
+        linear-gradient(-45deg, transparent 75%, #e8e8e8 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    background-color: #f0f0f0;
+    transform: rotateX(90deg) translateZ(0px);
+    position: absolute;
+    top: 300px;
+}
+
+/* TV on back wall */
+.tv-mount {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 80px;
+}
+
+.tv-screen {
+    width: 100%;
+    height: 100%;
+    background: #1a1a1a;
+    border-radius: 8px;
+    border: 3px solid #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Modern Furniture */
+.furniture {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.modern-sofa {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateZ(50px);
+    width: 200px;
+    height: 80px;
+}
+
+.sofa-base {
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(135deg, #8a8a8a 0%, #6a6a6a 100%);
+    border-radius: 8px;
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sofa-back {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(135deg, #9a9a9a 0%, #7a7a7a 100%);
+    border-radius: 8px 8px 0 0;
+    position: absolute;
+    bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.sofa-cushions {
+    width: 90%;
+    height: 15px;
+    background: linear-gradient(135deg, #b0b0b0 0%, #909090 100%);
+    border-radius: 4px;
+    position: absolute;
+    bottom: 30px;
+    left: 5%;
+}
+
+.glass-table {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateZ(150px);
+    width: 120px;
+    height: 60px;
+}
+
+.table-surface {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-legs {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    right: 10px;
+    bottom: 0;
+    background: linear-gradient(to bottom, #ccc 0%, #999 100%);
+    width: 4px;
     margin: 0 auto;
+}
+
+/* Simulator Controls */
+.simulator-controls {
+    background: white;
+    padding: 20px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.current-color-display {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.selected-color {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    border: 3px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.color-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.color-info .color-name {
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.color-info .color-code {
+    font-size: 0.9rem;
+    color: #666;
+    font-family: 'Courier New', monospace;
+}
+
+.wall-selection p {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.action-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.advice-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.buy-btn {
+    background: linear-gradient(135deg, #E30613 0%, #F7931D 100%);
+    color: white;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design for New Simulator */
+@media (max-width: 1024px) {
+    .color-palette-sidebar {
+        width: 280px;
+    }
+    
+    .room-3d {
+        width: 500px;
+        height: 350px;
+    }
+    
+    .back-wall {
+        width: 500px;
+        height: 250px;
+    }
+    
+    .left-wall, .right-wall {
+        height: 250px;
+    }
+    
+    .right-wall {
+        transform: rotateY(-90deg) translateZ(-500px);
+    }
+    
+    .floor {
+        width: 500px;
+        top: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .simulator-container {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .simulator-layout {
+        flex-direction: column;
+    }
+    
+    .color-palette-sidebar {
+        width: 100%;
+        height: auto;
+        max-height: 60vh;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 15px;
+    }
+    
+    .texture-options {
+        gap: 10px;
+        justify-content: center;
+    }
+    
+    .texture-preview {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .color-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+    }
+    
+    .color-item {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .simulator-actions {
+        flex-direction: row;
+        gap: 8px;
+    }
+    
+    .action-btn {
+        flex: 1;
+        padding: 10px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .color-name {
+        font-size: 0.8rem;
+    }
+    
+    .room-3d {
+        width: 350px;
+        height: 250px;
+        transform: rotateX(10deg) rotateY(-10deg);
+    }
+    
+    .back-wall {
+        width: 350px;
+        height: 200px;
+    }
+    
+    .left-wall, .right-wall {
+        height: 200px;
+        width: 150px;
+    }
+    
+    .right-wall {
+        transform: rotateY(-90deg) translateZ(-350px);
+    }
+    
+    .floor {
+        width: 350px;
+        height: 150px;
+        top: 200px;
+    }
+    
+    .simulator-controls {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .action-buttons {
+        justify-content: center;
+    }
 }
 
 /* New Simulator Layout */
@@ -2424,10 +2962,10 @@ footer {
 
 .hero-features {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
     margin: 50px 0;
-    max-width: 900px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }

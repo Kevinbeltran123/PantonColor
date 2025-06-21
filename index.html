@@ -54,18 +54,13 @@
                 <div class="hero-features">
                     <div class="feature-card">
                         <div class="feature-icon purple">🎨</div>
-                        <h3>Carta de Colores</h3>
-                        <p>Amplia paleta de colores profesionales</p>
+                        <h3>Productos Premium</h3>
+                        <p>Pinturas de la más alta calidad para todo tipo de proyectos</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon teal">💻</div>
-                        <h3>Simulador de Colores</h3>
-                        <p>Visualiza el resultado antes de pintar</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon pink">❓</div>
-                        <h3>Preguntas Frecuentes</h3>
-                        <p>Encuentra respuestas a tus dudas</p>
+                        <div class="feature-icon teal">🏠</div>
+                        <h3>Proyectos Profesionales</h3>
+                        <p>Soluciones completas para espacios residenciales y comerciales</p>
                     </div>
                 </div>
                 
@@ -114,130 +109,155 @@
 
     <!-- Color Simulator Section -->
     <section id="simulator" class="simulator-section section">
-        <div class="container">
-            <div class="simulator-header">
-                <h2 class="section-title">🎨 Busca tu Color y Descubre cómo se Ve Aplicado en tus Proyectos</h2>
-                <p class="subtitle">Visualiza en tiempo real cómo lucirán nuestros colores en espacios reales</p>
-            </div>
-            
-            <div class="new-simulator-layout">
-                <!-- Color Selection Card -->
-                <div class="color-selection-card">
-                    <div class="card-header">
-                        <h3>🎨 Selecciona el color</h3>
-                        <div class="color-search">
-                            <input type="text" placeholder="Buscar color..." class="color-search-input">
-                            <button class="search-btn"><i class="fas fa-search"></i></button>
+        <div class="simulator-container">
+            <div class="simulator-layout">
+                <!-- Left Panel: Texture and Color Selection -->
+                <div class="color-palette-sidebar">
+                    <!-- Texture Selection -->
+                    <div class="texture-section">
+                        <div class="section-header">
+                            <h4>🎨 Elige el acabado o textura</h4>
                         </div>
-                    </div>
-                    
-                    <div class="color-categories">
-                        <!-- Warm Colors -->
-                        <div class="color-category">
-                            <h4>Tonos Cálidos</h4>
-                            <div class="color-swatches">
-                                <button class="color-swatch" data-color="#E67E22" data-name="Naranja Cálido" style="background-color: #E67E22;"></button>
-                                <button class="color-swatch" data-color="#D35400" data-name="Naranja Quemado" style="background-color: #D35400;"></button>
-                                <button class="color-swatch" data-color="#F39C12" data-name="Amarillo Mostaza" style="background-color: #F39C12;"></button>
-                                <button class="color-swatch" data-color="#F1C40F" data-name="Amarillo Sol" style="background-color: #F1C40F;"></button>
-                                <button class="color-swatch" data-color="#E74C3C" data-name="Rojo Coral" style="background-color: #E74C3C;"></button>
-                                <button class="color-swatch" data-color="#C0392B" data-name="Rojo Intenso" style="background-color: #C0392B;"></button>
+                        <div class="texture-options">
+                            <div class="texture-option active" data-texture="liso">
+                                <div class="texture-preview texture-liso"></div>
+                                <span>Liso</span>
                             </div>
-                        </div>
-                        
-                        <!-- Cool Colors -->
-                        <div class="color-category">
-                            <h4>Tonos Fríos</h4>
-                            <div class="color-swatches">
-                                <button class="color-swatch" data-color="#3498DB" data-name="Azul Cielo" style="background-color: #3498DB;"></button>
-                                <button class="color-swatch" data-color="#2980B9" data-name="Azul Océano" style="background-color: #2980B9;"></button>
-                                <button class="color-swatch" data-color="#1ABC9C" data-name="Turquesa" style="background-color: #1ABC9C;"></button>
-                                <button class="color-swatch" data-color="#16A085" data-name="Verde Agua" style="background-color: #16A085;"></button>
-                                <button class="color-swatch" data-color="#27AE60" data-name="Verde Esmeralda" style="background-color: #27AE60;"></button>
-                                <button class="color-swatch" data-color="#2ECC71" data-name="Verde Menta" style="background-color: #2ECC71;"></button>
+                            <div class="texture-option" data-texture="texturizado">
+                                <div class="texture-preview texture-texturizado"></div>
+                                <span>Texturizado</span>
                             </div>
-                        </div>
-                        
-                        <!-- Neutral Colors -->
-                        <div class="color-category">
-                            <h4>Tonos Neutros</h4>
-                            <div class="color-swatches">
-                                <button class="color-swatch" data-color="#ECF0F1" data-name="Blanco Nube" style="background-color: #ECF0F1;"></button>
-                                <button class="color-swatch" data-color="#BDC3C7" data-name="Gris Plata" style="background-color: #BDC3C7;"></button>
-                                <button class="color-swatch" data-color="#95A5A6" data-name="Gris Medio" style="background-color: #95A5A6;"></button>
-                                <button class="color-swatch" data-color="#7F8C8D" data-name="Gris Asfalto" style="background-color: #7F8C8D;"></button>
-                                <button class="color-swatch active" data-color="#2C3E50" data-name="Gris Oscuro" style="background-color: #2C3E50;"></button>
-                                <button class="color-swatch" data-color="#34495E" data-name="Gris Carbón" style="background-color: #34495E;"></button>
+                            <div class="texture-option" data-texture="granulado">
+                                <div class="texture-preview texture-granulado"></div>
+                                <span>Granulado</span>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Color Selection -->
+                    <div class="color-section">
+                        <div class="section-header">
+                            <h4>🎨 Selecciona el color</h4>
+                        </div>
+                        
+                        <!-- Tonos Cálidos -->
+                        <div class="color-category">
+                            <h5>Tonos Cálidos</h5>
+                            <div class="color-grid">
+                                <div class="color-item" data-color="#D2691E" data-name="Chocolate" style="background-color: #D2691E;"></div>
+                                <div class="color-item" data-color="#CD853F" data-name="Peru" style="background-color: #CD853F;"></div>
+                                <div class="color-item" data-color="#DEB887" data-name="Burlywood" style="background-color: #DEB887;"></div>
+                                <div class="color-item" data-color="#F4A460" data-name="Sandy Brown" style="background-color: #F4A460;"></div>
+                                <div class="color-item active" data-color="#DC143C" data-name="Crimson" style="background-color: #DC143C;"></div>
+                                <div class="color-item" data-color="#FF6347" data-name="Tomate" style="background-color: #FF6347;"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tonos Fríos -->
+                        <div class="color-category">
+                            <h5>Tonos Fríos</h5>
+                            <div class="color-grid">
+                                <div class="color-item" data-color="#4682B4" data-name="Steel Blue" style="background-color: #4682B4;"></div>
+                                <div class="color-item" data-color="#5F9EA0" data-name="Cadet Blue" style="background-color: #5F9EA0;"></div>
+                                <div class="color-item" data-color="#20B2AA" data-name="Light Sea Green" style="background-color: #20B2AA;"></div>
+                                <div class="color-item" data-color="#008B8B" data-name="Dark Cyan" style="background-color: #008B8B;"></div>
+                                <div class="color-item" data-color="#483D8B" data-name="Dark Slate Blue" style="background-color: #483D8B;"></div>
+                                <div class="color-item" data-color="#6A5ACD" data-name="Slate Blue" style="background-color: #6A5ACD;"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tonos Neutros -->
+                        <div class="color-category">
+                            <h5>Tonos Neutros</h5>
+                            <div class="color-grid">
+                                <div class="color-item" data-color="#F5F5DC" data-name="Beige" style="background-color: #F5F5DC;"></div>
+                                <div class="color-item" data-color="#D3D3D3" data-name="Light Gray" style="background-color: #D3D3D3;"></div>
+                                <div class="color-item" data-color="#A9A9A9" data-name="Dark Gray" style="background-color: #A9A9A9;"></div>
+                                <div class="color-item" data-color="#696969" data-name="Dim Gray" style="background-color: #696969;"></div>
+                                <div class="color-item" data-color="#2F4F4F" data-name="Dark Slate Gray" style="background-color: #2F4F4F;"></div>
+                                <div class="color-item" data-color="#000000" data-name="Negro" style="background-color: #000000;"></div>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <div class="action-buttons">
-                        <button class="action-btn advice-btn" onclick="requestColorAdvice()">
-                            <i class="fas fa-user-tie"></i> Recibir Asesoría
+                    <!-- Action Buttons -->
+                    <div class="simulator-actions">
+                        <button class="action-btn primary" onclick="requestColorAdvice()">
+                            <i class="fas fa-palette"></i> Recibir Asesoría
                         </button>
-                        <button class="action-btn buy-btn" onclick="requestColorQuote()">
-                            <i class="fas fa-shopping-cart"></i> ¿Dónde Comprarlo?
+                        <button class="action-btn secondary" onclick="requestColorQuote()">
+                            <i class="fas fa-calculator"></i> ¡Dónde Comprarlo!
                         </button>
                     </div>
                 </div>
 
-                <!-- Room Preview Card -->
-                <div class="room-preview-card">
-                    <div class="preview-header">
-                        <h3>Vista Previa</h3>
-                        <div class="selected-color-info">
-                            <div class="color-circle" id="selectedColorCircle" style="background-color: #2C3E50;"></div>
-                            <div class="color-text">
-                                <span class="color-name" id="selectedColorName">Gris Oscuro</span>
-                                <span class="color-code" id="selectedColorCode">#2C3E50</span>
+                <!-- Room Visualization -->
+                <div class="room-visualization">
+                    <div class="room-container">
+                        <div class="room-3d">
+                            <!-- Back Wall -->
+                            <div class="wall back-wall" id="backWall" data-wall="back" style="background-color: #FFD700;">
+                                <div class="wall-content">
+                                    <!-- TV mounted on back wall -->
+                                    <div class="tv-mount">
+                                        <div class="tv-screen"></div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <div class="room-display">
-                        <div class="living-room-preview" id="roomPreview">
-                            <!-- Simple room with sofa and table -->
-                            <div class="wall" id="mainWall" style="background-color: #2C3E50;"></div>
-                            <div class="room-furniture">
-                                <div class="sofa">
+                            
+                            <!-- Left Wall -->
+                            <div class="wall left-wall" id="leftWall" data-wall="left" style="background-color: #FFD700;"></div>
+                            
+                            <!-- Right Wall -->
+                            <div class="wall right-wall" id="rightWall" data-wall="right" style="background-color: #F5F5F5;"></div>
+                            
+                            <!-- Floor -->
+                            <div class="floor"></div>
+                            
+                            <!-- Furniture -->
+                            <div class="furniture">
+                                <!-- Modern Sofa -->
+                                <div class="modern-sofa">
+                                    <div class="sofa-base"></div>
                                     <div class="sofa-back"></div>
-                                    <div class="sofa-seat"></div>
-                                    <div class="sofa-arm left"></div>
-                                    <div class="sofa-arm right"></div>
+                                    <div class="sofa-cushions"></div>
                                 </div>
-                                <div class="coffee-table">
-                                    <div class="table-top"></div>
-                                    <div class="table-leg leg1"></div>
-                                    <div class="table-leg leg2"></div>
-                                    <div class="table-leg leg3"></div>
-                                    <div class="table-leg leg4"></div>
+                                
+                                <!-- Glass Coffee Table -->
+                                <div class="glass-table">
+                                    <div class="table-surface"></div>
+                                    <div class="table-legs"></div>
+                                </div>
+                                
+                                <!-- Side Objects -->
+                                <div class="side-objects">
+                                    <div class="plant"></div>
+                                    <div class="lamp"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="recent-applications">
-                        <h4>🏢 Aplicaciones Recientes</h4>
-                        <div class="application-thumbnails">
-                            <div class="thumbnail">
-                                <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Proyecto 1">
+                    <div class="simulator-controls">
+                        <div class="current-color-display">
+                            <div class="selected-color" id="selectedColorDisplay" style="background-color: #FFD700;"></div>
+                            <div class="color-info">
+                                <span class="color-name" id="currentColorName">Amarillo</span>
+                                <span class="color-code" id="currentColorCode">#FFD700</span>
                             </div>
-                            <div class="thumbnail">
-                                <img src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Proyecto 2">
-                            </div>
-                            <div class="thumbnail">
-                                <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Proyecto 3">
-                            </div>
-                            <div class="thumbnail">
-                                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Proyecto 4">
-                            </div>
-                            <div class="thumbnail">
-                                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Proyecto 5">
-                            </div>
-                            <div class="thumbnail">
-                                <img src="https://images.unsplash.com/photo-1549497538-303791108f95?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Proyecto 6">
-                            </div>
+                        </div>
+                        
+                        <div class="wall-selection">
+                            <p>Haz clic en las paredes para pintarlas con el color seleccionado</p>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="action-btn advice-btn" onclick="requestColorAdvice()">
+                                <i class="fas fa-user-tie"></i> Recibir Asesoría
+                            </button>
+                            <button class="action-btn buy-btn" onclick="requestColorQuote()">
+                                <i class="fas fa-shopping-cart"></i> ¿Dónde Comprarlo?
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,9 @@
 // DOM Elements
 const productGrid = document.getElementById('productGrid');
 
-// Color Simulator Variables
-let currentColor = '#2C3E50';
-let currentColorName = 'Gris Oscuro';
+// Enhanced Color Simulator Variables
+let selectedColor = '#FFD700';
+let selectedColorName = 'Amarillo';
 let currentSlide = 0;
 const totalSlides = 6;
 
@@ -142,51 +142,74 @@ function submitContactForm() {
     document.querySelector('.contact-form').reset();
 }
 
-// New Simplified Color Simulator Functions
+// Enhanced 3D Simulator Functions
 function initializeSimulator() {
-    updateColorPreview(currentColor, currentColorName);
-    setupNewColorSwatchListeners();
-    updateWallColor(currentColor);
+    setupTextureSelection();
+    setupColorPalette();
+    setupWallClickHandlers();
+    updateSelectedColorDisplay();
 }
 
-function setupNewColorSwatchListeners() {
-    const colorSwatches = document.querySelectorAll('.color-swatch');
-    colorSwatches.forEach(swatch => {
-        swatch.addEventListener('click', function() {
-            // Remove active class from all swatches
-            colorSwatches.forEach(s => s.classList.remove('active'));
-            // Add active class to clicked swatch
+function setupTextureSelection() {
+    const textureOptions = document.querySelectorAll('.texture-option');
+    textureOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            // Remove active class from all texture options
+            textureOptions.forEach(o => o.classList.remove('active'));
+            // Add active class to clicked option
             this.classList.add('active');
             
-            currentColor = this.getAttribute('data-color');
-            currentColorName = this.getAttribute('data-name');
-            updateColorPreview(currentColor, currentColorName);
-            updateWallColor(currentColor);
+            const selectedTexture = this.getAttribute('data-texture');
+            console.log('Selected texture:', selectedTexture);
+            // You can add texture effects to walls here if needed
         });
     });
 }
 
-function updateColorPreview(color, name) {
-    const colorCircle = document.getElementById('selectedColorCircle');
-    const colorNameEl = document.getElementById('selectedColorName');
-    const colorCodeEl = document.getElementById('selectedColorCode');
-    
-    if (colorCircle) colorCircle.style.backgroundColor = color;
-    if (colorNameEl) colorNameEl.textContent = name;
-    if (colorCodeEl) colorCodeEl.textContent = color;
+function setupColorPalette() {
+    const colorItems = document.querySelectorAll('.color-item');
+    colorItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Remove active class from all items
+            colorItems.forEach(c => c.classList.remove('active'));
+            // Add active class to clicked item
+            this.classList.add('active');
+            
+            selectedColor = this.getAttribute('data-color');
+            selectedColorName = this.getAttribute('data-name');
+            updateSelectedColorDisplay();
+        });
+    });
 }
 
-function updateWallColor(color) {
-    const wall = document.getElementById('mainWall');
-    if (wall) {
-        wall.style.backgroundColor = color;
-        // Add a subtle gradient effect
-        wall.style.background = `linear-gradient(180deg, ${color} 0%, ${color}CC 100%)`;
-    }
+function setupWallClickHandlers() {
+    const walls = document.querySelectorAll('.wall');
+    walls.forEach(wall => {
+        wall.addEventListener('click', function() {
+            // Apply selected color to clicked wall
+            this.style.backgroundColor = selectedColor;
+            
+            // Add a subtle animation
+            this.style.transform = this.style.transform + ' scale(1.02)';
+            setTimeout(() => {
+                this.style.transform = this.style.transform.replace(' scale(1.02)', '');
+            }, 200);
+        });
+    });
+}
+
+function updateSelectedColorDisplay() {
+    const colorDisplay = document.getElementById('selectedColorDisplay');
+    const colorNameEl = document.getElementById('currentColorName');
+    const colorCodeEl = document.getElementById('currentColorCode');
+    
+    if (colorDisplay) colorDisplay.style.backgroundColor = selectedColor;
+    if (colorNameEl) colorNameEl.textContent = selectedColorName;
+    if (colorCodeEl) colorCodeEl.textContent = selectedColor;
 }
 
 function requestColorAdvice() {
-    const whatsappMessage = `Hola, necesito asesoría sobre el color ${currentColorName} (${currentColor}) para mi proyecto. ¿Podrían ayudarme con recomendaciones de aplicación y acabados?`;
+    const whatsappMessage = `Hola, necesito asesoría sobre el color ${selectedColorName} (${selectedColor}) para mi proyecto. ¿Podrían ayudarme con recomendaciones de aplicación y acabados?`;
     const whatsappUrl = `https://wa.me/573134312484?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
 }
