@@ -254,6 +254,16 @@ header:hover {
     backdrop-filter: blur(10px);
 }
 
+.nav-link.active {
+    color: var(--primary) !important;
+    background: var(--glass-bg-strong) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid var(--glass-border) !important;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
 .nav-link:hover i {
     transform: scale(1.2) rotate(5deg);
 }
@@ -662,12 +672,24 @@ header:hover {
     padding: var(--spacing-xl) 0;
     position: relative;
     display: none;
+    visibility: hidden;
+    opacity: 0;
     min-height: calc(100vh - 80px);
     width: 100%;
     background: var(--light);
-    z-index: 1;
+    z-index: -1;
     overflow: hidden;
     isolation: isolate;
+    pointer-events: none;
+    transform: translateZ(0);
+}
+
+.section:not(.active) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
 }
 
 /* Secciones específicas con fondos apropiados */
@@ -698,7 +720,13 @@ header:hover {
 
 .section.active {
     display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 1 !important;
+    pointer-events: auto !important;
     animation: sectionFadeIn 0.6s ease-out;
+    position: relative !important;
+    transform: translateZ(0);
 }
 
 @keyframes sectionFadeIn {

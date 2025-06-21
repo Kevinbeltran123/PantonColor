@@ -7,33 +7,162 @@ let selectedColorName = 'Amarillo';
 let currentSlide = 0;
 const totalSlides = 6;
 
-// Mostrar/ocultar secciones
+// Mostrar/ocultar secciones con lógica mejorada de aislamiento
 function showSection(sectionId, event) {
     if (event) event.preventDefault();
 
-    // Oculta todas las secciones
+    // Primero: Oculta completamente todas las secciones
     document.querySelectorAll('.section').forEach(section => {
         section.classList.remove('active');
+        section.style.display = 'none';
+        section.style.visibility = 'hidden';
+        section.style.opacity = '0';
+        section.style.zIndex = '-1';
     });
-    // Muestra la sección seleccionada
-    document.getElementById(sectionId).classList.add('active');
 
-    // Hace scroll hacia arriba
+    // Segundo: Encuentra y muestra solo la sección seleccionada
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        // Restaura la visibilidad de la sección objetivo
+        targetSection.style.display = 'block';
+        targetSection.style.visibility = 'visible';
+        targetSection.style.opacity = '1';
+        targetSection.style.zIndex = '1';
+        targetSection.classList.add('active');
+        
+        // Asegura que la sección esté al frente
+        targetSection.style.position = 'relative';
+    }
+
+    // Hace scroll hacia arriba suavemente
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Si entras a productos, vuelve a renderizar
-    if (sectionId === 'products') {
-        renderProducts();
+    // Actualiza el estado de navegación visual
+    updateNavigationState(sectionId);
+
+    // Inicializa contenido específico de cada sección
+    initializeSectionContent(sectionId);
+}
+
+// Función auxiliar para actualizar el estado visual de la navegación
+function updateNavigationState(activeSectionId) {
+    // Remueve clase activa de todos los enlaces de navegación
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+    });
+    
+    // Añade clase activa al enlace correspondiente
+    const activeNavLink = document.querySelector(`[onclick*="showSection('${activeSectionId}')"]`);
+    if (activeNavLink) {
+        activeNavLink.classList.add('active');
+    }
+}
+
+// Función auxiliar para inicializar contenido específico de cada sección
+function initializeSectionContent(sectionId) {
+    switch(sectionId) {
+        case 'products':
+            renderProducts();
+            break;
+        case 'simulator':
+            initializeSimulator();
+            break;
+        case 'projects':
+            resetCarousel();
+            break;
+        case 'home':
+            // Reinicia cualquier animación del hero si es necesario
+            initializeHeroAnimations();
+            break;
+        case 'calculator':
+            // Limpia el formulario de calculadora
+            clearCalculatorForm();
+            break;
+        case 'contact':
+            // Limpia el formulario de contacto
+            clearContactForm();
+            break;
+    }
+}
+
+// Función para limpiar el formulario de calculadora
+function clearCalculatorForm() {
+    const calculatorForm = document.querySelector('.calculator-container');
+    if (calculatorForm) {
+        // Oculta resultados anteriores si existen
+        const resultDiv = document.getElementById('result');
+        if (resultDiv) {
+            resultDiv.style.display = 'none';
+        }
+    }
+}
+
+// Función para limpiar el formulario de contacto
+function clearContactForm() {
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm && typeof contactForm.reset === 'function') {
+        // No limpiamos automáticamente, solo nos aseguramos de que esté disponible
+    }
+}
+
+// Función para inicializar animaciones del hero
+function initializeHeroAnimations() {
+    const heroSection = document.getElementById('home');
+    if (heroSection) {
+        // Reinicia cualquier animación CSS si es necesario
+        heroSection.style.animation = 'none';
+        heroSection.offsetHeight; // Trigger reflow
+        heroSection.style.animation = null;
+    }
+}
+
+// Función para inicializar la navegación de página asegurando aislamiento completo
+function initializePageNavigation() {
+    // Oculta completamente todas las secciones primero
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+        section.style.display = 'none';
+        section.style.visibility = 'hidden';
+        section.style.opacity = '0';
+        section.style.zIndex = '-1';
+    });
+    
+    // Muestra solo la sección home
+    const homeSection = document.getElementById('home');
+    if (homeSection) {
+        homeSection.style.display = 'block';
+        homeSection.style.visibility = 'visible';
+        homeSection.style.opacity = '1';
+        homeSection.style.zIndex = '1';
+        homeSection.classList.add('active');
+        homeSection.style.position = 'relative';
     }
     
-    // Si entras al simulador, inicializa
-    if (sectionId === 'simulator') {
-        initializeSimulator();
+    // Actualiza el estado de navegación
+    updateNavigationState('home');
+    
+    // Previene cualquier conflicto de z-index con elementos globales
+    ensureProperLayering();
+}
+
+// Función para asegurar el layering apropiado de elementos
+function ensureProperLayering() {
+    // Asegura que el header esté siempre al frente
+    const header = document.querySelector('header');
+    if (header) {
+        header.style.zIndex = '1000';
     }
     
-    // Si entras a proyectos, reinicia el carousel
-    if (sectionId === 'projects') {
-        resetCarousel();
+    // Asegura que el botón de WhatsApp esté visible
+    const whatsappButton = document.querySelector('.whatsapp-float');
+    if (whatsappButton) {
+        whatsappButton.style.zIndex = '999';
+    }
+    
+    // Asegura que el footer esté en la capa correcta
+    const footer = document.querySelector('footer');
+    if (footer) {
+        footer.style.zIndex = '10';
     }
 }
 
@@ -408,9 +537,35 @@ document.addEventListener('DOMContentLoaded', function() {
         showSection('simulator');
     }
     
-    // Verificar que todas las secciones estén ocultas excepto home
-    document.querySelectorAll('.section:not(#home)').forEach(section => {
-        section.classList.remove('active');
-    });
-    document.getElementById('home').classList.add('active');
+    // Inicializa la navegación mostrando solo la sección home
+    initializePageNavigation();
+    
+    // Añade listeners de debugging para verificar navegación
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        addNavigationDebugging();
+    }
 });
+
+// Función de debugging para desarrollo (solo en localhost)
+function addNavigationDebugging() {
+    console.log('🎨 Panton Color SPA - Navigation debugging enabled');
+    
+    // Log de cambios de sección
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                const element = mutation.target;
+                if (element.classList.contains('section')) {
+                    const sectionId = element.id;
+                    const isActive = element.classList.contains('active');
+                    console.log(`📱 Section ${sectionId}: ${isActive ? 'ACTIVE' : 'INACTIVE'}`);
+                }
+            }
+        });
+    });
+    
+    // Observa cambios en todas las secciones
+    document.querySelectorAll('.section').forEach(section => {
+        observer.observe(section, { attributes: true, attributeFilter: ['class'] });
+    });
+}
