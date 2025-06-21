@@ -2,8 +2,10 @@
 const productGrid = document.getElementById('productGrid');
 
 // Color Simulator Variables
-let currentColor = '#E30613';
-let currentRoom = 'living';
+let currentColor = '#D2691E';
+let currentColorName = 'Canela';
+let currentRoom = 'hotel';
+let currentTexture = 'smooth';
 let currentSlide = 0;
 const totalSlides = 6;
 
@@ -142,61 +144,122 @@ function submitContactForm() {
     document.querySelector('.contact-form').reset();
 }
 
-// Color Simulator Functions
+// Enhanced Color Simulator Functions
 function initializeSimulator() {
-    updateWallColor(currentColor);
-    updateColorInfo('Rojo Panton', currentColor);
-    setupColorListeners();
+    updateColorPreview(currentColor, currentColorName);
+    setupColorSwatchListeners();
+    setupTextureListeners();
+    setupRoomTabs();
+    updateRoomDisplay(currentRoom);
 }
 
-function setupColorListeners() {
-    const colorButtons = document.querySelectorAll('.color-btn');
-    colorButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            // Remove active class from all buttons
-            colorButtons.forEach(b => b.classList.remove('active'));
-            // Add active class to clicked button
+function setupColorSwatchListeners() {
+    const colorSwatches = document.querySelectorAll('.color-swatch');
+    colorSwatches.forEach(swatch => {
+        swatch.addEventListener('click', function() {
+            // Remove active class from all swatches
+            colorSwatches.forEach(s => s.classList.remove('active'));
+            // Add active class to clicked swatch
             this.classList.add('active');
             
             currentColor = this.getAttribute('data-color');
-            const colorName = this.getAttribute('title');
-            updateWallColor(currentColor);
-            updateColorInfo(colorName, currentColor);
+            currentColorName = this.getAttribute('data-name');
+            updateColorPreview(currentColor, currentColorName);
+            updateRoomColorOverlay(currentColor);
         });
     });
 }
 
-function updateWallColor(color) {
-    const walls = document.querySelectorAll('.main-wall');
-    walls.forEach(wall => {
-        if (currentRoom === 'exterior') {
-            wall.style.background = `linear-gradient(to bottom, #87CEEB 0%, ${color} 30%)`;
-        } else {
-            wall.style.backgroundColor = color;
+function setupTextureListeners() {
+    const textureButtons = document.querySelectorAll('.texture-btn');
+    textureButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active class from all buttons
+            textureButtons.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            currentTexture = this.getAttribute('data-texture');
+            updateRoomColorOverlay(currentColor);
+        });
+    });
+}
+
+function setupRoomTabs() {
+    const roomTabs = document.querySelectorAll('.room-tab');
+    roomTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const roomType = this.getAttribute('data-room');
+            changeRoom(roomType);
+        });
+    });
+}
+
+function updateColorPreview(color, name) {
+    const colorPreview = document.getElementById('colorPreview');
+    const colorNameEl = document.getElementById('selectedColorName');
+    const colorCodeEl = document.getElementById('selectedColorCode');
+    
+    if (colorPreview) colorPreview.style.backgroundColor = color;
+    if (colorNameEl) colorNameEl.textContent = name;
+    if (colorCodeEl) colorCodeEl.textContent = color;
+}
+
+function updateRoomColorOverlay(color) {
+    const overlays = document.querySelectorAll('.color-overlay');
+    overlays.forEach(overlay => {
+        overlay.style.backgroundColor = color;
+        
+        // Apply texture effects
+        switch(currentTexture) {
+            case 'textured':
+                overlay.style.opacity = '0.4';
+                overlay.style.backgroundImage = `
+                    radial-gradient(circle at 20% 20%, rgba(0,0,0,0.1) 1px, transparent 1px),
+                    radial-gradient(circle at 80% 80%, rgba(0,0,0,0.05) 1px, transparent 1px)
+                `;
+                overlay.style.backgroundSize = '8px 8px, 8px 8px';
+                break;
+            case 'grainy':
+                overlay.style.opacity = '0.35';
+                overlay.style.backgroundImage = `
+                    repeating-linear-gradient(45deg, 
+                        rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 2px, 
+                        transparent 2px, transparent 4px)
+                `;
+                break;
+            default: // smooth
+                overlay.style.opacity = '0.3';
+                overlay.style.backgroundImage = 'none';
         }
     });
 }
 
-function updateColorInfo(name, code) {
-    document.getElementById('selectedColorName').textContent = name;
-    document.getElementById('selectedColorCode').textContent = code;
-}
-
 function changeRoom(roomType) {
-    // Update room buttons
-    document.querySelectorAll('.room-btn').forEach(btn => {
-        btn.classList.remove('active');
+    // Update room tabs
+    document.querySelectorAll('.room-tab').forEach(tab => {
+        tab.classList.remove('active');
     });
     document.querySelector(`[data-room="${roomType}"]`).classList.add('active');
     
     // Update room display
-    document.querySelectorAll('.room-container').forEach(container => {
-        container.classList.remove('active');
-    });
-    document.querySelector(`.${roomType}-room`).classList.add('active');
+    updateRoomDisplay(roomType);
     
     currentRoom = roomType;
-    updateWallColor(currentColor);
+    updateRoomColorOverlay(currentColor);
+}
+
+function updateRoomDisplay(roomType) {
+    document.querySelectorAll('.room-environment').forEach(room => {
+        room.classList.remove('active');
+    });
+    document.querySelector(`[data-room="${roomType}"]`).classList.add('active');
+}
+
+function requestColorAdvice() {
+    const whatsappMessage = `Hola, necesito asesoría sobre el color ${currentColorName} (${currentColor}) para mi proyecto. ¿Podrían ayudarme con recomendaciones de aplicación y acabados?`;
+    const whatsappUrl = `https://wa.me/573134312484?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappUrl, '_blank');
 }
 
 function requestColorQuote() {

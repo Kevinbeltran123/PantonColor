@@ -42,12 +42,53 @@
     <section id="home" class="hero section active">
         <div class="container">
             <div class="hero-content">
-                <h1>Transforma tus espacios con pintura de calidad profesional</h1>
-                <p>Descubre nuestra gama premium de colores y acabados para cada superficie y proyecto</p>
-                <div class="hero-btns">
-                    <a href="#" class="btn btn-primary" onclick="showSection('products', event)"><i class="fas fa-shopping-cart"></i> Ver Productos</a>
-                    <a href="#" class="btn btn-outline" onclick="showSection('simulator', event)"><i class="fas fa-palette"></i> Simular Colores</a>
+                <div class="hero-badge">
+                    <span class="badge-text">🎨 ¡Transforma ambientes inspirados en el color de la vida!</span>
                 </div>
+                <h1>
+                    <span class="hero-highlight">Pinturas de máxima calidad</span> 
+                    para profesionales y hogares
+                </h1>
+                <p class="hero-subtitle">Descubre nuestra gama premium de colores y acabados. Calcula tu pintura, encuentra productos y recibe asesoría experta para tu próximo proyecto.</p>
+                
+                <div class="hero-features">
+                    <div class="feature-card">
+                        <div class="feature-icon purple">🎨</div>
+                        <h3>Carta de Colores</h3>
+                        <p>Amplia paleta de colores profesionales</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon teal">💻</div>
+                        <h3>Simulador de Colores</h3>
+                        <p>Visualiza el resultado antes de pintar</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon pink">❓</div>
+                        <h3>Preguntas Frecuentes</h3>
+                        <p>Encuentra respuestas a tus dudas</p>
+                    </div>
+                </div>
+                
+                <div class="hero-btns">
+                    <a href="#" class="btn btn-primary" onclick="showSection('simulator', event)">
+                        <i class="fas fa-palette"></i> Simular Colores
+                    </a>
+                    <a href="#" class="btn btn-secondary" onclick="showSection('products', event)">
+                        <i class="fas fa-shopping-cart"></i> Ver Catálogo
+                    </a>
+                    <a href="https://wa.me/573134312484?text=Hola,%20necesito%20asesoría%20sobre%20sus%20productos%20de%20pintura" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Asesoría Gratis
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-decoration">
+            <div class="paint-drops">
+                <div class="drop drop-1"></div>
+                <div class="drop drop-2"></div>
+                <div class="drop drop-3"></div>
+                <div class="drop drop-4"></div>
+                <div class="drop drop-5"></div>
             </div>
         </div>
     </section>
@@ -74,104 +115,176 @@
     <!-- Color Simulator Section -->
     <section id="simulator" class="simulator-section section">
         <div class="container">
-            <h2 class="section-title">Simulador de Colores</h2>
-            <p class="text-center" style="max-width: 700px; margin: 0 auto 40px;">Visualiza cómo se verán nuestros colores en diferentes espacios. Selecciona un color y observa el resultado en tiempo real.</p>
+            <div class="simulator-header">
+                <h2 class="section-title">🎨 Busca tu Color y Descubre cómo se Ve Aplicado en tus Proyectos</h2>
+                <p class="subtitle">Visualiza en tiempo real cómo lucirán nuestros colores en espacios reales</p>
+            </div>
             
-            <div class="simulator-container">
-                <div class="simulator-controls">
-                    <h3>Selecciona un Color</h3>
-                    <div class="color-palette">
-                        <div class="color-group">
-                            <h4>Tonos Cálidos</h4>
-                            <div class="colors-row">
-                                <button class="color-btn" data-color="#E30613" style="background-color: #E30613;" title="Rojo Panton"></button>
-                                <button class="color-btn" data-color="#F7931D" style="background-color: #F7931D;" title="Naranja Vibrante"></button>
-                                <button class="color-btn" data-color="#FF6B6B" style="background-color: #FF6B6B;" title="Rosa Coral"></button>
-                                <button class="color-btn" data-color="#FFD93D" style="background-color: #FFD93D;" title="Amarillo Sol"></button>
-                                <button class="color-btn" data-color="#A0522D" style="background-color: #A0522D;" title="Marrón Tierra"></button>
-                            </div>
-                        </div>
-                        <div class="color-group">
-                            <h4>Tonos Fríos</h4>
-                            <div class="colors-row">
-                                <button class="color-btn" data-color="#4ECDC4" style="background-color: #4ECDC4;" title="Turquesa"></button>
-                                <button class="color-btn" data-color="#45B7D1" style="background-color: #45B7D1;" title="Azul Cielo"></button>
-                                <button class="color-btn" data-color="#96CEB4" style="background-color: #96CEB4;" title="Verde Menta"></button>
-                                <button class="color-btn" data-color="#6C5CE7" style="background-color: #6C5CE7;" title="Púrpura"></button>
-                                <button class="color-btn" data-color="#2F3542" style="background-color: #2F3542;" title="Azul Marino"></button>
-                            </div>
-                        </div>
-                        <div class="color-group">
-                            <h4>Tonos Neutros</h4>
-                            <div class="colors-row">
-                                <button class="color-btn" data-color="#FFFFFF" style="background-color: #FFFFFF; border: 2px solid #ddd;" title="Blanco Puro"></button>
-                                <button class="color-btn" data-color="#F8F9FA" style="background-color: #F8F9FA; border: 1px solid #ddd;" title="Blanco Hueso"></button>
-                                <button class="color-btn" data-color="#E9ECEF" style="background-color: #E9ECEF;" title="Gris Claro"></button>
-                                <button class="color-btn" data-color="#6C757D" style="background-color: #6C757D;" title="Gris Medio"></button>
-                                <button class="color-btn" data-color="#343A40" style="background-color: #343A40;" title="Gris Oscuro"></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="room-selector">
-                        <h4>Tipo de Espacio</h4>
-                        <div class="room-buttons">
-                            <button class="room-btn active" data-room="living" onclick="changeRoom('living')">
-                                <i class="fas fa-couch"></i> Sala
+            <div class="simulator-layout">
+                <!-- Texture & Finish Selection -->
+                <div class="texture-selection">
+                    <div class="selection-card">
+                        <h3>📋 Elige el acabado o textura</h3>
+                        <div class="texture-options">
+                            <button class="texture-btn active" data-texture="smooth" title="Acabado tipo proyectado liso o demasiado">
+                                <div class="texture-preview smooth-texture"></div>
+                                <span>Liso</span>
                             </button>
-                            <button class="room-btn" data-room="bedroom" onclick="changeRoom('bedroom')">
-                                <i class="fas fa-bed"></i> Dormitorio
+                            <button class="texture-btn" data-texture="textured" title="Textura con relieve">
+                                <div class="texture-preview textured-texture"></div>
+                                <span>Texturizado</span>
                             </button>
-                            <button class="room-btn" data-room="kitchen" onclick="changeRoom('kitchen')">
-                                <i class="fas fa-utensils"></i> Cocina
-                            </button>
-                            <button class="room-btn" data-room="exterior" onclick="changeRoom('exterior')">
-                                <i class="fas fa-home"></i> Exterior
+                            <button class="texture-btn" data-texture="grainy" title="Acabado granulado">
+                                <div class="texture-preview grainy-texture"></div>
+                                <span>Granulado</span>
                             </button>
                         </div>
                     </div>
                 </div>
-                
-                <div class="simulator-preview">
-                    <div class="room-preview" id="roomPreview">
-                        <div class="room-container living-room active">
-                            <div class="wall main-wall" id="mainWall"></div>
-                            <div class="furniture">
-                                <div class="sofa"></div>
-                                <div class="coffee-table"></div>
-                                <div class="lamp"></div>
+
+                <!-- Color Selection -->
+                <div class="color-selection">
+                    <div class="selection-card">
+                        <h3>🎨 Selecciona el color</h3>
+                        <div class="color-search">
+                            <input type="text" placeholder="Buscar color..." class="color-search-input">
+                            <button class="search-btn"><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="color-grid">
+                            <!-- Warm Colors -->
+                            <div class="color-section">
+                                <h4>Tonos Cálidos</h4>
+                                <div class="colors-row">
+                                    <button class="color-swatch active" data-color="#D2691E" data-name="Canela" style="background-color: #D2691E;"></button>
+                                    <button class="color-swatch" data-color="#CD853F" data-name="Marrón Arena" style="background-color: #CD853F;"></button>
+                                    <button class="color-swatch" data-color="#DEB887" data-name="Beige Cálido" style="background-color: #DEB887;"></button>
+                                    <button class="color-swatch" data-color="#F4A460" data-name="Amarillo Tostado" style="background-color: #F4A460;"></button>
+                                    <button class="color-swatch" data-color="#E30613" data-name="Rojo Panton" style="background-color: #E30613;"></button>
+                                    <button class="color-swatch" data-color="#F7931D" data-name="Naranja Vibrante" style="background-color: #F7931D;"></button>
+                                </div>
+                            </div>
+                            <!-- Cool Colors -->
+                            <div class="color-section">
+                                <h4>Tonos Fríos</h4>
+                                <div class="colors-row">
+                                    <button class="color-swatch" data-color="#4682B4" data-name="Azul Acero" style="background-color: #4682B4;"></button>
+                                    <button class="color-swatch" data-color="#5F9EA0" data-name="Azul Grisáceo" style="background-color: #5F9EA0;"></button>
+                                    <button class="color-swatch" data-color="#20B2AA" data-name="Verde Marino" style="background-color: #20B2AA;"></button>
+                                    <button class="color-swatch" data-color="#2E8B57" data-name="Verde Bosque" style="background-color: #2E8B57;"></button>
+                                    <button class="color-swatch" data-color="#708090" data-name="Gris Pizarra" style="background-color: #708090;"></button>
+                                    <button class="color-swatch" data-color="#483D8B" data-name="Azul Profundo" style="background-color: #483D8B;"></button>
+                                </div>
+                            </div>
+                            <!-- Neutral Colors -->
+                            <div class="color-section">
+                                <h4>Tonos Neutros</h4>
+                                <div class="colors-row">
+                                    <button class="color-swatch" data-color="#F5F5DC" data-name="Beige" style="background-color: #F5F5DC;"></button>
+                                    <button class="color-swatch" data-color="#DCDCDC" data-name="Gris Claro" style="background-color: #DCDCDC;"></button>
+                                    <button class="color-swatch" data-color="#C0C0C0" data-name="Plata" style="background-color: #C0C0C0;"></button>
+                                    <button class="color-swatch" data-color="#808080" data-name="Gris Medio" style="background-color: #808080;"></button>
+                                    <button class="color-swatch" data-color="#696969" data-name="Gris Oscuro" style="background-color: #696969;"></button>
+                                    <button class="color-swatch" data-color="#2F4F4F" data-name="Gris Pizarra Oscuro" style="background-color: #2F4F4F;"></button>
+                                </div>
                             </div>
                         </div>
-                        
-                        <div class="room-container bedroom-room">
-                            <div class="wall main-wall" id="bedroomWall"></div>
-                            <div class="furniture">
-                                <div class="bed"></div>
-                                <div class="nightstand"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="room-container kitchen-room">
-                            <div class="wall main-wall" id="kitchenWall"></div>
-                            <div class="furniture">
-                                <div class="counter"></div>
-                                <div class="cabinets"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="room-container exterior-room">
-                            <div class="wall main-wall" id="exteriorWall"></div>
-                            <div class="furniture">
-                                <div class="door"></div>
-                                <div class="window"></div>
-                            </div>
+                        <div class="color-actions">
+                            <button class="action-btn receive-advice" onclick="requestColorAdvice()">
+                                <i class="fas fa-user-tie"></i> Recibir Asesoría
+                            </button>
+                            <button class="action-btn buy-color" onclick="requestColorQuote()">
+                                <i class="fas fa-shopping-cart"></i> ¿Dónde Comprarlo?
+                            </button>
                         </div>
                     </div>
-                    <div class="color-info">
-                        <h4 id="selectedColorName">Selecciona un color</h4>
-                        <p id="selectedColorCode">#E30613</p>
-                        <button class="btn btn-primary" onclick="requestColorQuote()">
-                            <i class="fas fa-shopping-cart"></i> Solicitar Cotización
-                        </button>
+                </div>
+
+                <!-- Room Preview -->
+                <div class="room-visualization">
+                    <div class="preview-card">
+                        <div class="room-preview-header">
+                            <h3>Vista Previa</h3>
+                            <div class="color-info-display">
+                                <div class="selected-color-preview" id="colorPreview" style="background-color: #D2691E;"></div>
+                                <div class="color-details">
+                                    <span class="color-name" id="selectedColorName">Canela</span>
+                                    <span class="color-code" id="selectedColorCode">#D2691E</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="room-tabs">
+                            <button class="room-tab active" data-room="hotel" onclick="changeRoom('hotel')">
+                                <i class="fas fa-bed"></i> Hotel
+                            </button>
+                            <button class="room-tab" data-room="office" onclick="changeRoom('office')">
+                                <i class="fas fa-building"></i> Oficina
+                            </button>
+                            <button class="room-tab" data-room="home" onclick="changeRoom('home')">
+                                <i class="fas fa-home"></i> Casa
+                            </button>
+                            <button class="room-tab" data-room="commercial" onclick="changeRoom('commercial')">
+                                <i class="fas fa-store"></i> Comercial
+                            </button>
+                        </div>
+                        
+                        <div class="room-showcase" id="roomShowcase">
+                            <!-- Hotel Room -->
+                            <div class="room-environment hotel-room active" data-room="hotel">
+                                <div class="room-image">
+                                    <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=600&q=80" alt="Hotel Room" class="base-image">
+                                    <div class="color-overlay wall-accent" id="hotelWallOverlay"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Office -->
+                            <div class="room-environment office-room" data-room="office">
+                                <div class="room-image">
+                                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=600&q=80" alt="Modern Office" class="base-image">
+                                    <div class="color-overlay wall-accent" id="officeWallOverlay"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Home -->
+                            <div class="room-environment home-room" data-room="home">
+                                <div class="room-image">
+                                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=600&q=80" alt="Living Room" class="base-image">
+                                    <div class="color-overlay wall-accent" id="homeWallOverlay"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Commercial -->
+                            <div class="room-environment commercial-room" data-room="commercial">
+                                <div class="room-image">
+                                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=600&q=80" alt="Commercial Space" class="base-image">
+                                    <div class="color-overlay wall-accent" id="commercialWallOverlay"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="recent-applications">
+                            <h4>🏢 Aplicaciones Recientes</h4>
+                            <div class="application-gallery">
+                                <div class="app-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Project 1">
+                                </div>
+                                <div class="app-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Project 2">
+                                </div>
+                                <div class="app-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Project 3">
+                                </div>
+                                <div class="app-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Project 4">
+                                </div>
+                                <div class="app-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Project 5">
+                                </div>
+                                <div class="app-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1549497538-303791108f95?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Project 6">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -558,50 +671,51 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <a href="#" class="footer-logo" onclick="showSection('home', event)">
-                        <i class="fas fa-paint-roller"></i> PinturasPremium
+                        <img src="images/favicon_pantoncolor_64.png" alt="Logo Panton Color" style="height: 32px; margin-right: 10px;">
+                        Panton - Color
                     </a>
-                    <p class="footer-about">Proveedores de pintura de calidad profesional para proyectos residenciales, comerciales e industriales.</p>
+                    <p class="footer-about">Especialistas en pinturas de alta calidad con más de 15 años transformando espacios con color y creatividad.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/573134312484" class="social-link" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-col">
-                    <h3>Productos</h3>
+                    <h3>🎨 Herramientas</h3>
                     <ul class="footer-links">
-                        <li><a href="#" onclick="showSection('products', event)">Pinturas para Interiores</a></li>
-                        <li><a href="#" onclick="showSection('products', event)">Pinturas para Exteriores</a></li>
-                        <li><a href="#" onclick="showSection('products', event)">Pinturas Especiales</a></li>
-                        <li><a href="#" onclick="showSection('products', event)">Herramientas y Accesorios</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Recursos</h3>
-                    <ul class="footer-links">
+                        <li><a href="#" onclick="showSection('simulator', event)">Simulador de Colores</a></li>
                         <li><a href="#" onclick="showSection('calculator', event)">Calculadora de Pintura</a></li>
-                        <li><a href="#">Guías de Color</a></li>
-                        <li><a href="#">Tutoriales de Aplicación</a></li>
-                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#" onclick="showSection('products', event)">Catálogo de Productos</a></li>
+                        <li><a href="https://wa.me/573134312484?text=Hola,%20necesito%20asesoría%20técnica%20sobre%20pintura">Asesoría Técnica</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
-                    <h3>Empresa</h3>
+                    <h3>🏢 Proyectos</h3>
                     <ul class="footer-links">
+                        <li><a href="#" onclick="showSection('projects', event)">Proyectos Realizados</a></li>
+                        <li><a href="https://wa.me/573134312484?text=Necesito%20cotización%20para%20proyecto%20comercial">Cotización Comercial</a></li>
+                        <li><a href="https://wa.me/573134312484?text=Necesito%20cotización%20para%20proyecto%20residencial">Cotización Residencial</a></li>
+                        <li><a href="https://wa.me/573134312484?text=Necesito%20información%20sobre%20garantías">Garantía de Calidad</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>📞 Contacto</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showSection('contact', event)">Información de Contacto</a></li>
+                        <li><a href="tel:+573134312484">📱 +57 313 431 2484</a></li>
+                        <li><a href="mailto:info@pantoncolor.com">✉️ info@pantoncolor.com</a></li>
                         <li><a href="#" onclick="showSection('about', event)">Sobre Nosotros</a></li>
-                        <li><a href="#">Sostenibilidad</a></li>
-                        <li><a href="#">Trabaja con Nosotros</a></li>
-                        <li><a href="#" onclick="showSection('contact', event)">Contacto</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 PinturasPremium. Todos los derechos reservados. | <a href="#" style="color: #aaaaaa;">Términos y Condiciones</a> | <a href="#" style="color: #aaaaaa;">Política de Privacidad</a></p>
+                <p>&copy; 2024 Panton Color. Todos los derechos reservados. | <a href="https://wa.me/573134312484?text=Necesito%20información%20sobre%20términos%20y%20condiciones" style="color: #aaaaaa;">Términos y Condiciones</a> | <a href="https://wa.me/573134312484?text=Necesito%20información%20sobre%20política%20de%20privacidad" style="color: #aaaaaa;">Política de Privacidad</a></p>
             </div>
         </div>
     </footer>
