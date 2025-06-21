@@ -385,14 +385,32 @@ function initializeAccessibility() {
 
 // Inicializa la web al cargar
 document.addEventListener('DOMContentLoaded', function() {
+    // Asegurar que la página inicie en home
     showSection('home');
     renderProducts();
     startCarousel();
     initializeScrollAnimations();
     initializeAccessibility();
     
+    // Agregar listeners adicionales para navegación
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const section = this.getAttribute('onclick').match(/showSection\('(\w+)'/);
+            if (section && section[1]) {
+                showSection(section[1]);
+            }
+        });
+    });
+    
     // Initialize simulator if on simulator section
     if (window.location.hash === '#simulator') {
         showSection('simulator');
     }
+    
+    // Verificar que todas las secciones estén ocultas excepto home
+    document.querySelectorAll('.section:not(#home)').forEach(section => {
+        section.classList.remove('active');
+    });
+    document.getElementById('home').classList.add('active');
 });
