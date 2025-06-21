@@ -1,17 +1,17 @@
 :root {
-    /* Paleta de Colores Profesional y Seria */
-    --primary: #2C5282;        /* Azul profesional */
-    --primary-light: #3182CE;  /* Azul medio */
-    --primary-dark: #1A365D;   /* Azul oscuro */
-    --secondary: #1A202C;      /* Gris carbón */
-    --secondary-light: #2D3748; /* Gris medio */
-    --accent: #D69E2E;         /* Dorado profesional */
-    --accent-light: #F6E05E;   /* Dorado claro */
-    --accent-dark: #B7791F;    /* Dorado oscuro */
-    --tertiary: #319795;       /* Verde azulado */
-    --tertiary-light: #81E6D9; /* Verde azulado claro */
+    /* Paleta de Colores Corporativa y Seria */
+    --primary: #1A365D;        /* Azul marino corporativo */
+    --primary-light: #2C5282;  /* Azul corporativo medio */
+    --primary-dark: #0F2942;   /* Azul marino muy oscuro */
+    --secondary: #2D3748;      /* Gris pizarra */
+    --secondary-light: #4A5568; /* Gris medio */
+    --accent: #718096;         /* Gris neutro */
+    --accent-light: #A0AEC0;   /* Gris claro */
+    --accent-dark: #4A5568;    /* Gris oscuro */
+    --tertiary: #2B6CB0;       /* Azul complementario */
+    --tertiary-light: #63B3ED; /* Azul claro */
     --success: #38A169;        /* Verde éxito */
-    --warning: #DD6B20;        /* Naranja advertencia */
+    --warning: #D69E2E;        /* Amarillo advertencia */
     
     /* Colores Neutros Sofisticados */
     --light: #FAFBFC;          /* Blanco casi puro */
@@ -22,21 +22,21 @@
     --text-muted: #718096;     /* Gris claro */
     --border: #E2E8F0;         /* Borde suave */
     
-    /* Gradientes Profesionales */
-    --gradient-primary: linear-gradient(135deg, #2C5282 0%, #D69E2E 50%, #319795 100%);
-    --gradient-secondary: linear-gradient(135deg, #4A5568 0%, #2D3748 100%);
-    --gradient-hero: linear-gradient(135deg, #1A365D 0%, #2C5282 25%, #319795 50%, #2D3748 75%, #1A202C 100%);
+    /* Gradientes Corporativos */
+    --gradient-primary: linear-gradient(135deg, #1A365D 0%, #2C5282 50%, #2B6CB0 100%);
+    --gradient-secondary: linear-gradient(135deg, #2D3748 0%, #4A5568 100%);
+    --gradient-hero: linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 25%, #E2E8F0 50%, #CBD5E0 100%);
     --gradient-light: linear-gradient(135deg, #FAFBFC 0%, #F5F7FA 100%);
     --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
     
-    /* Sombras Profesionales */
+    /* Sombras Corporativas */
     --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
     --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
     --shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
     --shadow-xl: 0 20px 40px rgba(0,0,0,0.15);
-    --shadow-glass: 0 8px 32px rgba(44, 82, 130, 0.15);
-    --shadow-colored: 0 10px 25px rgba(44, 82, 130, 0.25);
-    --shadow-glow: 0 0 20px rgba(214, 158, 46, 0.3);
+    --shadow-glass: 0 8px 32px rgba(26, 54, 93, 0.15);
+    --shadow-colored: 0 10px 25px rgba(26, 54, 93, 0.25);
+    --shadow-glow: 0 0 20px rgba(113, 128, 150, 0.3);
     
     /* Efectos Glassmorphism */
     --glass-bg: rgba(255, 255, 255, 0.20);
@@ -275,7 +275,7 @@ header:hover {
     width: 80%;
 }
 
-/* Hero Section Profesional */
+/* Hero Section Corporativo */
 .hero {
     position: relative;
     min-height: 100vh;
@@ -285,10 +285,9 @@ header:hover {
     overflow: hidden;
     padding: 120px 0 40px;
     background: 
-        radial-gradient(circle at 20% 80%, rgba(44, 82, 130, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(214, 158, 46, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(49, 151, 149, 0.1) 0%, transparent 50%),
-        linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 50%, #E2E8F0 100%);
+        radial-gradient(circle at 15% 85%, rgba(26, 54, 93, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 85% 15%, rgba(113, 128, 150, 0.05) 0%, transparent 50%),
+        linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 25%, #E2E8F0 50%, #CBD5E0 100%);
 }
 
 .hero::before {
@@ -399,6 +398,9 @@ header:hover {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--spacing-md);
     margin: var(--spacing-md) 0;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
 }
 
 .feature-card {
@@ -597,7 +599,7 @@ header:hover {
     left: 15%;
     animation-delay: 0s;
     animation-duration: 8s;
-    opacity: 0.3;
+    opacity: 0.15;
 }
 
 .drop-2 {
@@ -608,40 +610,40 @@ header:hover {
     right: 20%;
     animation-delay: 2s;
     animation-duration: 6s;
-    opacity: 0.3;
+    opacity: 0.15;
 }
 
 .drop-3 {
     width: 80px;
     height: 80px;
-    background: radial-gradient(circle, var(--tertiary) 0%, #1A6B6B 100%);
+    background: radial-gradient(circle, var(--tertiary) 0%, var(--primary-dark) 100%);
     bottom: 20%;
     left: 10%;
     animation-delay: 4s;
     animation-duration: 10s;
-    opacity: 0.2;
+    opacity: 0.1;
 }
 
 .drop-4 {
     width: 35px;
     height: 35px;
-    background: radial-gradient(circle, var(--success) 0%, #2D6B4A 100%);
+    background: radial-gradient(circle, var(--secondary) 0%, var(--secondary-light) 100%);
     top: 30%;
     right: 30%;
     animation-delay: 1s;
     animation-duration: 7s;
-    opacity: 0.3;
+    opacity: 0.15;
 }
 
 .drop-5 {
     width: 50px;
     height: 50px;
-    background: radial-gradient(circle, var(--warning) 0%, #A44D1A 100%);
+    background: radial-gradient(circle, var(--primary-light) 0%, var(--primary) 100%);
     top: 60%;
     left: 70%;
     animation-delay: 3s;
     animation-duration: 9s;
-    opacity: 0.3;
+    opacity: 0.15;
 }
 
 @keyframes dropFloat {
@@ -664,20 +666,24 @@ header:hover {
     width: 100%;
     background: var(--light);
     z-index: 1;
+    overflow: hidden;
+    isolation: isolate;
 }
 
 /* Secciones específicas con fondos apropiados */
 .section:not(.hero) {
     background: var(--light);
     margin-bottom: 0;
+    padding-top: 120px;
+    clear: both;
+    contain: layout style;
 }
 
 .hero {
     background: 
-        radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(0, 188, 212, 0.2) 0%, transparent 50%),
-        linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+        radial-gradient(circle at 15% 85%, rgba(26, 54, 93, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 85% 15%, rgba(113, 128, 150, 0.05) 0%, transparent 50%),
+        linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 25%, #E2E8F0 50%, #CBD5E0 100%);
     min-height: 100vh;
     margin-bottom: 0;
     position: relative;
@@ -685,6 +691,9 @@ header:hover {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding: 120px 0 40px;
+    contain: layout style;
+    isolation: isolate;
 }
 
 .section.active {
@@ -3716,65 +3725,7 @@ footer {
     line-height: 1.6;
 }
 
-.hero-features {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    margin: 50px 0;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.feature-card {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 30px 20px;
-    border-radius: var(--border-radius);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: var(--transition);
-    text-align: center;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.feature-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    margin: 0 auto 20px;
-    color: white;
-}
-
-.feature-icon.purple {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.feature-icon.teal {
-    background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
-}
-
-.feature-icon.pink {
-    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
-}
-
-.feature-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    color: white;
-}
-
-.feature-card p {
-    opacity: 0.9;
-    font-size: 1rem;
-}
+/* Duplicate CSS rules removed to prevent conflicts */
 
 .hero-btns {
     display: flex;
