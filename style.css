@@ -253,6 +253,7 @@ header {
 .section {
     padding: 80px 0;
     position: relative;
+    display: none;
     opacity: 0;
     visibility: hidden;
     transform: translateY(30px);
@@ -260,6 +261,7 @@ header {
 }
 
 .section.active {
+    display: block !important;
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
