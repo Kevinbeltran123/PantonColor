@@ -120,169 +120,123 @@
                 <p class="subtitle">Visualiza en tiempo real cómo lucirán nuestros colores en espacios reales</p>
             </div>
             
-            <div class="simulator-layout">
-                <!-- Texture & Finish Selection -->
-                <div class="texture-selection">
-                    <div class="selection-card">
-                        <h3>📋 Elige el acabado o textura</h3>
-                        <div class="texture-options">
-                            <button class="texture-btn active" data-texture="smooth" title="Acabado tipo proyectado liso o demasiado">
-                                <div class="texture-preview smooth-texture"></div>
-                                <span>Liso</span>
-                            </button>
-                            <button class="texture-btn" data-texture="textured" title="Textura con relieve">
-                                <div class="texture-preview textured-texture"></div>
-                                <span>Texturizado</span>
-                            </button>
-                            <button class="texture-btn" data-texture="grainy" title="Acabado granulado">
-                                <div class="texture-preview grainy-texture"></div>
-                                <span>Granulado</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Color Selection -->
-                <div class="color-selection">
-                    <div class="selection-card">
+            <div class="new-simulator-layout">
+                <!-- Color Selection Card -->
+                <div class="color-selection-card">
+                    <div class="card-header">
                         <h3>🎨 Selecciona el color</h3>
                         <div class="color-search">
                             <input type="text" placeholder="Buscar color..." class="color-search-input">
                             <button class="search-btn"><i class="fas fa-search"></i></button>
                         </div>
-                        <div class="color-grid">
-                            <!-- Warm Colors -->
-                            <div class="color-section">
-                                <h4>Tonos Cálidos</h4>
-                                <div class="colors-row">
-                                    <button class="color-swatch active" data-color="#D2691E" data-name="Canela" style="background-color: #D2691E;"></button>
-                                    <button class="color-swatch" data-color="#CD853F" data-name="Marrón Arena" style="background-color: #CD853F;"></button>
-                                    <button class="color-swatch" data-color="#DEB887" data-name="Beige Cálido" style="background-color: #DEB887;"></button>
-                                    <button class="color-swatch" data-color="#F4A460" data-name="Amarillo Tostado" style="background-color: #F4A460;"></button>
-                                    <button class="color-swatch" data-color="#E30613" data-name="Rojo Panton" style="background-color: #E30613;"></button>
-                                    <button class="color-swatch" data-color="#F7931D" data-name="Naranja Vibrante" style="background-color: #F7931D;"></button>
-                                </div>
-                            </div>
-                            <!-- Cool Colors -->
-                            <div class="color-section">
-                                <h4>Tonos Fríos</h4>
-                                <div class="colors-row">
-                                    <button class="color-swatch" data-color="#4682B4" data-name="Azul Acero" style="background-color: #4682B4;"></button>
-                                    <button class="color-swatch" data-color="#5F9EA0" data-name="Azul Grisáceo" style="background-color: #5F9EA0;"></button>
-                                    <button class="color-swatch" data-color="#20B2AA" data-name="Verde Marino" style="background-color: #20B2AA;"></button>
-                                    <button class="color-swatch" data-color="#2E8B57" data-name="Verde Bosque" style="background-color: #2E8B57;"></button>
-                                    <button class="color-swatch" data-color="#708090" data-name="Gris Pizarra" style="background-color: #708090;"></button>
-                                    <button class="color-swatch" data-color="#483D8B" data-name="Azul Profundo" style="background-color: #483D8B;"></button>
-                                </div>
-                            </div>
-                            <!-- Neutral Colors -->
-                            <div class="color-section">
-                                <h4>Tonos Neutros</h4>
-                                <div class="colors-row">
-                                    <button class="color-swatch" data-color="#F5F5DC" data-name="Beige" style="background-color: #F5F5DC;"></button>
-                                    <button class="color-swatch" data-color="#DCDCDC" data-name="Gris Claro" style="background-color: #DCDCDC;"></button>
-                                    <button class="color-swatch" data-color="#C0C0C0" data-name="Plata" style="background-color: #C0C0C0;"></button>
-                                    <button class="color-swatch" data-color="#808080" data-name="Gris Medio" style="background-color: #808080;"></button>
-                                    <button class="color-swatch" data-color="#696969" data-name="Gris Oscuro" style="background-color: #696969;"></button>
-                                    <button class="color-swatch" data-color="#2F4F4F" data-name="Gris Pizarra Oscuro" style="background-color: #2F4F4F;"></button>
-                                </div>
+                    </div>
+                    
+                    <div class="color-categories">
+                        <!-- Warm Colors -->
+                        <div class="color-category">
+                            <h4>Tonos Cálidos</h4>
+                            <div class="color-swatches">
+                                <button class="color-swatch" data-color="#E67E22" data-name="Naranja Cálido" style="background-color: #E67E22;"></button>
+                                <button class="color-swatch" data-color="#D35400" data-name="Naranja Quemado" style="background-color: #D35400;"></button>
+                                <button class="color-swatch" data-color="#F39C12" data-name="Amarillo Mostaza" style="background-color: #F39C12;"></button>
+                                <button class="color-swatch" data-color="#F1C40F" data-name="Amarillo Sol" style="background-color: #F1C40F;"></button>
+                                <button class="color-swatch" data-color="#E74C3C" data-name="Rojo Coral" style="background-color: #E74C3C;"></button>
+                                <button class="color-swatch" data-color="#C0392B" data-name="Rojo Intenso" style="background-color: #C0392B;"></button>
                             </div>
                         </div>
-                        <div class="color-actions">
-                            <button class="action-btn receive-advice" onclick="requestColorAdvice()">
-                                <i class="fas fa-user-tie"></i> Recibir Asesoría
-                            </button>
-                            <button class="action-btn buy-color" onclick="requestColorQuote()">
-                                <i class="fas fa-shopping-cart"></i> ¿Dónde Comprarlo?
-                            </button>
+                        
+                        <!-- Cool Colors -->
+                        <div class="color-category">
+                            <h4>Tonos Fríos</h4>
+                            <div class="color-swatches">
+                                <button class="color-swatch" data-color="#3498DB" data-name="Azul Cielo" style="background-color: #3498DB;"></button>
+                                <button class="color-swatch" data-color="#2980B9" data-name="Azul Océano" style="background-color: #2980B9;"></button>
+                                <button class="color-swatch" data-color="#1ABC9C" data-name="Turquesa" style="background-color: #1ABC9C;"></button>
+                                <button class="color-swatch" data-color="#16A085" data-name="Verde Agua" style="background-color: #16A085;"></button>
+                                <button class="color-swatch" data-color="#27AE60" data-name="Verde Esmeralda" style="background-color: #27AE60;"></button>
+                                <button class="color-swatch" data-color="#2ECC71" data-name="Verde Menta" style="background-color: #2ECC71;"></button>
+                            </div>
                         </div>
+                        
+                        <!-- Neutral Colors -->
+                        <div class="color-category">
+                            <h4>Tonos Neutros</h4>
+                            <div class="color-swatches">
+                                <button class="color-swatch" data-color="#ECF0F1" data-name="Blanco Nube" style="background-color: #ECF0F1;"></button>
+                                <button class="color-swatch" data-color="#BDC3C7" data-name="Gris Plata" style="background-color: #BDC3C7;"></button>
+                                <button class="color-swatch" data-color="#95A5A6" data-name="Gris Medio" style="background-color: #95A5A6;"></button>
+                                <button class="color-swatch" data-color="#7F8C8D" data-name="Gris Asfalto" style="background-color: #7F8C8D;"></button>
+                                <button class="color-swatch active" data-color="#2C3E50" data-name="Gris Oscuro" style="background-color: #2C3E50;"></button>
+                                <button class="color-swatch" data-color="#34495E" data-name="Gris Carbón" style="background-color: #34495E;"></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="action-btn advice-btn" onclick="requestColorAdvice()">
+                            <i class="fas fa-user-tie"></i> Recibir Asesoría
+                        </button>
+                        <button class="action-btn buy-btn" onclick="requestColorQuote()">
+                            <i class="fas fa-shopping-cart"></i> ¿Dónde Comprarlo?
+                        </button>
                     </div>
                 </div>
 
-                <!-- Room Preview -->
-                <div class="room-visualization">
-                    <div class="preview-card">
-                        <div class="room-preview-header">
-                            <h3>Vista Previa</h3>
-                            <div class="color-info-display">
-                                <div class="selected-color-preview" id="colorPreview" style="background-color: #D2691E;"></div>
-                                <div class="color-details">
-                                    <span class="color-name" id="selectedColorName">Canela</span>
-                                    <span class="color-code" id="selectedColorCode">#D2691E</span>
+                <!-- Room Preview Card -->
+                <div class="room-preview-card">
+                    <div class="preview-header">
+                        <h3>Vista Previa</h3>
+                        <div class="selected-color-info">
+                            <div class="color-circle" id="selectedColorCircle" style="background-color: #2C3E50;"></div>
+                            <div class="color-text">
+                                <span class="color-name" id="selectedColorName">Gris Oscuro</span>
+                                <span class="color-code" id="selectedColorCode">#2C3E50</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="room-display">
+                        <div class="living-room-preview" id="roomPreview">
+                            <!-- Simple room with sofa and table -->
+                            <div class="wall" id="mainWall" style="background-color: #2C3E50;"></div>
+                            <div class="room-furniture">
+                                <div class="sofa">
+                                    <div class="sofa-back"></div>
+                                    <div class="sofa-seat"></div>
+                                    <div class="sofa-arm left"></div>
+                                    <div class="sofa-arm right"></div>
+                                </div>
+                                <div class="coffee-table">
+                                    <div class="table-top"></div>
+                                    <div class="table-leg leg1"></div>
+                                    <div class="table-leg leg2"></div>
+                                    <div class="table-leg leg3"></div>
+                                    <div class="table-leg leg4"></div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="room-tabs">
-                            <button class="room-tab active" data-room="hotel" onclick="changeRoom('hotel')">
-                                <i class="fas fa-bed"></i> Hotel
-                            </button>
-                            <button class="room-tab" data-room="office" onclick="changeRoom('office')">
-                                <i class="fas fa-building"></i> Oficina
-                            </button>
-                            <button class="room-tab" data-room="home" onclick="changeRoom('home')">
-                                <i class="fas fa-home"></i> Casa
-                            </button>
-                            <button class="room-tab" data-room="commercial" onclick="changeRoom('commercial')">
-                                <i class="fas fa-store"></i> Comercial
-                            </button>
-                        </div>
-                        
-                        <div class="room-showcase" id="roomShowcase">
-                            <!-- Hotel Room -->
-                            <div class="room-environment hotel-room active" data-room="hotel">
-                                <div class="room-image">
-                                    <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=600&q=80" alt="Hotel Room" class="base-image">
-                                    <div class="color-overlay wall-accent" id="hotelWallOverlay"></div>
-                                </div>
+                    </div>
+                    
+                    <div class="recent-applications">
+                        <h4>🏢 Aplicaciones Recientes</h4>
+                        <div class="application-thumbnails">
+                            <div class="thumbnail">
+                                <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Proyecto 1">
                             </div>
-                            
-                            <!-- Office -->
-                            <div class="room-environment office-room" data-room="office">
-                                <div class="room-image">
-                                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=600&q=80" alt="Modern Office" class="base-image">
-                                    <div class="color-overlay wall-accent" id="officeWallOverlay"></div>
-                                </div>
+                            <div class="thumbnail">
+                                <img src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Proyecto 2">
                             </div>
-                            
-                            <!-- Home -->
-                            <div class="room-environment home-room" data-room="home">
-                                <div class="room-image">
-                                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=600&q=80" alt="Living Room" class="base-image">
-                                    <div class="color-overlay wall-accent" id="homeWallOverlay"></div>
-                                </div>
+                            <div class="thumbnail">
+                                <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Proyecto 3">
                             </div>
-                            
-                            <!-- Commercial -->
-                            <div class="room-environment commercial-room" data-room="commercial">
-                                <div class="room-image">
-                                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=600&q=80" alt="Commercial Space" class="base-image">
-                                    <div class="color-overlay wall-accent" id="commercialWallOverlay"></div>
-                                </div>
+                            <div class="thumbnail">
+                                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Proyecto 4">
                             </div>
-                        </div>
-                        
-                        <div class="recent-applications">
-                            <h4>🏢 Aplicaciones Recientes</h4>
-                            <div class="application-gallery">
-                                <div class="app-thumbnail">
-                                    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Project 1">
-                                </div>
-                                <div class="app-thumbnail">
-                                    <img src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Project 2">
-                                </div>
-                                <div class="app-thumbnail">
-                                    <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Project 3">
-                                </div>
-                                <div class="app-thumbnail">
-                                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Project 4">
-                                </div>
-                                <div class="app-thumbnail">
-                                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Project 5">
-                                </div>
-                                <div class="app-thumbnail">
-                                    <img src="https://images.unsplash.com/photo-1549497538-303791108f95?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Project 6">
-                                </div>
+                            <div class="thumbnail">
+                                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Proyecto 5">
+                            </div>
+                            <div class="thumbnail">
+                                <img src="https://images.unsplash.com/photo-1549497538-303791108f95?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150&q=80" alt="Proyecto 6">
                             </div>
                         </div>
                     </div>
@@ -684,22 +638,22 @@
                 </div>
                 
                 <div class="footer-col">
-                    <h3>🎨 Herramientas</h3>
+                    <h3>🎨 Servicios</h3>
                     <ul class="footer-links">
                         <li><a href="#" onclick="showSection('simulator', event)">Simulador de Colores</a></li>
                         <li><a href="#" onclick="showSection('calculator', event)">Calculadora de Pintura</a></li>
-                        <li><a href="#" onclick="showSection('products', event)">Catálogo de Productos</a></li>
-                        <li><a href="https://wa.me/573134312484?text=Hola,%20necesito%20asesoría%20técnica%20sobre%20pintura">Asesoría Técnica</a></li>
+                        <li><a href="#" onclick="showSection('products', event)">Nuestros Productos</a></li>
+                        <li><a href="https://wa.me/573134312484?text=Hola,%20necesito%20asesoría%20técnica%20sobre%20pintura">Asesoría Profesional</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
-                    <h3>🏢 Proyectos</h3>
+                    <h3>🏢 Empresa</h3>
                     <ul class="footer-links">
-                        <li><a href="#" onclick="showSection('projects', event)">Proyectos Realizados</a></li>
-                        <li><a href="https://wa.me/573134312484?text=Necesito%20cotización%20para%20proyecto%20comercial">Cotización Comercial</a></li>
-                        <li><a href="https://wa.me/573134312484?text=Necesito%20cotización%20para%20proyecto%20residencial">Cotización Residencial</a></li>
-                        <li><a href="https://wa.me/573134312484?text=Necesito%20información%20sobre%20garantías">Garantía de Calidad</a></li>
+                        <li><a href="#" onclick="showSection('projects', event)">Nuestros Proyectos</a></li>
+                        <li><a href="#" onclick="showSection('about', event)">Sobre Panton Color</a></li>
+                        <li><a href="https://wa.me/573134312484?text=Necesito%20cotización%20para%20mi%20proyecto">Solicitar Cotización</a></li>
+                        <li><a href="https://wa.me/573134312484?text=Necesito%20información%20sobre%20garantías">Garantía y Calidad</a></li>
                     </ul>
                 </div>
                 
