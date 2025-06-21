@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pinturas de máxima calidad para profesionales y hogares. Calcula tu pintura, encuentra productos y recibe asesoría experta.">
+    <title>Pinturas Panton Color</title>
+    <link rel="icon" type="image/png" href="images/favicon_pantoncolor_64.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/573134312484?text=Hola,%20necesito%20asesoría%20sobre%20sus%20productos%20de%20pintura" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo" onclick="showSection('home')">
+                <img src="images/favicon_pantoncolor_64.png" alt="Logo Panton Color" class="logo-img" style="height: 40px; margin-right: 12px;">
+                Panton - Color
+            </a>
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('products', event)"><i class="fas fa-paint-brush"></i> Productos</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('simulator', event)"><i class="fas fa-palette"></i> Simulador</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('calculator', event)"><i class="fas fa-calculator"></i> Calculadora</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('projects', event)"><i class="fas fa-building"></i> Proyectos</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('about', event)"><i class="fas fa-info-circle"></i> Nosotros</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('contact', event)"><i class="fas fa-envelope"></i> Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero section active">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transforma tus espacios con pintura de calidad profesional</h1>
+                <p>Descubre nuestra gama premium de colores y acabados para cada superficie y proyecto</p>
+                <div class="hero-btns">
+                    <a href="#" class="btn btn-primary" onclick="showSection('products', event)"><i class="fas fa-shopping-cart"></i> Ver Productos</a>
+                    <a href="#" class="btn btn-outline" onclick="showSection('simulator', event)"><i class="fas fa-palette"></i> Simular Colores</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Products Section -->
+    <section id="products" class="products-section section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Productos</h2>
+            <p class="text-center" style="max-width: 700px; margin: 0 auto 40px;">Selecciona entre nuestra gama de productos profesionales para encontrar la solución perfecta para tu proyecto</p>
+            
+            <div class="product-categories">
+                <button class="category-btn active" onclick="filterProducts('all')">Todos</button>
+                <button class="category-btn" onclick="filterProducts('interior')">Interiores</button>
+                <button class="category-btn" onclick="filterProducts('exterior')">Exteriores</button>
+                <button class="category-btn" onclick="filterProducts('special')">Especiales</button>
+            </div>
+            
+            <div class="product-grid" id="productGrid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Simulator Section -->
+    <section id="simulator" class="simulator-section section">
+        <div class="container">
+            <h2 class="section-title">Simulador de Colores</h2>
+            <p class="text-center" style="max-width: 700px; margin: 0 auto 40px;">Visualiza cómo se verán nuestros colores en diferentes espacios. Selecciona un color y observa el resultado en tiempo real.</p>
+            
+            <div class="simulator-container">
+                <div class="simulator-controls">
+                    <h3>Selecciona un Color</h3>
+                    <div class="color-palette">
+                        <div class="color-group">
+                            <h4>Tonos Cálidos</h4>
+                            <div class="colors-row">
+                                <button class="color-btn" data-color="#E30613" style="background-color: #E30613;" title="Rojo Panton"></button>
+                                <button class="color-btn" data-color="#F7931D" style="background-color: #F7931D;" title="Naranja Vibrante"></button>
+                                <button class="color-btn" data-color="#FF6B6B" style="background-color: #FF6B6B;" title="Rosa Coral"></button>
+                                <button class="color-btn" data-color="#FFD93D" style="background-color: #FFD93D;" title="Amarillo Sol"></button>
+                                <button class="color-btn" data-color="#A0522D" style="background-color: #A0522D;" title="Marrón Tierra"></button>
+                            </div>
+                        </div>
+                        <div class="color-group">
+                            <h4>Tonos Fríos</h4>
+                            <div class="colors-row">
+                                <button class="color-btn" data-color="#4ECDC4" style="background-color: #4ECDC4;" title="Turquesa"></button>
+                                <button class="color-btn" data-color="#45B7D1" style="background-color: #45B7D1;" title="Azul Cielo"></button>
+                                <button class="color-btn" data-color="#96CEB4" style="background-color: #96CEB4;" title="Verde Menta"></button>
+                                <button class="color-btn" data-color="#6C5CE7" style="background-color: #6C5CE7;" title="Púrpura"></button>
+                                <button class="color-btn" data-color="#2F3542" style="background-color: #2F3542;" title="Azul Marino"></button>
+                            </div>
+                        </div>
+                        <div class="color-group">
+                            <h4>Tonos Neutros</h4>
+                            <div class="colors-row">
+                                <button class="color-btn" data-color="#FFFFFF" style="background-color: #FFFFFF; border: 2px solid #ddd;" title="Blanco Puro"></button>
+                                <button class="color-btn" data-color="#F8F9FA" style="background-color: #F8F9FA; border: 1px solid #ddd;" title="Blanco Hueso"></button>
+                                <button class="color-btn" data-color="#E9ECEF" style="background-color: #E9ECEF;" title="Gris Claro"></button>
+                                <button class="color-btn" data-color="#6C757D" style="background-color: #6C757D;" title="Gris Medio"></button>
+                                <button class="color-btn" data-color="#343A40" style="background-color: #343A40;" title="Gris Oscuro"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="room-selector">
+                        <h4>Tipo de Espacio</h4>
+                        <div class="room-buttons">
+                            <button class="room-btn active" data-room="living" onclick="changeRoom('living')">
+                                <i class="fas fa-couch"></i> Sala
+                            </button>
+                            <button class="room-btn" data-room="bedroom" onclick="changeRoom('bedroom')">
+                                <i class="fas fa-bed"></i> Dormitorio
+                            </button>
+                            <button class="room-btn" data-room="kitchen" onclick="changeRoom('kitchen')">
+                                <i class="fas fa-utensils"></i> Cocina
+                            </button>
+                            <button class="room-btn" data-room="exterior" onclick="changeRoom('exterior')">
+                                <i class="fas fa-home"></i> Exterior
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="simulator-preview">
+                    <div class="room-preview" id="roomPreview">
+                        <div class="room-container living-room active">
+                            <div class="wall main-wall" id="mainWall"></div>
+                            <div class="furniture">
+                                <div class="sofa"></div>
+                                <div class="coffee-table"></div>
+                                <div class="lamp"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="room-container bedroom-room">
+                            <div class="wall main-wall" id="bedroomWall"></div>
+                            <div class="furniture">
+                                <div class="bed"></div>
+                                <div class="nightstand"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="room-container kitchen-room">
+                            <div class="wall main-wall" id="kitchenWall"></div>
+                            <div class="furniture">
+                                <div class="counter"></div>
+                                <div class="cabinets"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="room-container exterior-room">
+                            <div class="wall main-wall" id="exteriorWall"></div>
+                            <div class="furniture">
+                                <div class="door"></div>
+                                <div class="window"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="color-info">
+                        <h4 id="selectedColorName">Selecciona un color</h4>
+                        <p id="selectedColorCode">#E30613</p>
+                        <button class="btn btn-primary" onclick="requestColorQuote()">
+                            <i class="fas fa-shopping-cart"></i> Solicitar Cotización
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator-section section">
+        <div class="container">
+            <h2 class="section-title">Calculadora de Pintura</h2>
+            <p class="text-center" style="max-width: 600px; margin: 0 auto 40px;">Calcula exactamente cuánta pintura necesitas para tu proyecto</p>
+            
+            <div class="calculator-container texture-bg">
+                <div class="form-group">
+                    <label for="area">Área a pintar (m²)</label>
+                    <input type="number" id="area" class="form-control" placeholder="Ej: 50">
+                </div>
+                
+                <div class="form-group">
+                    <label for="coats">Número de manos</label>
+                    <input type="number" id="coats" class="form-control" value="2" min="1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="paint-type">Tipo de pintura</label>
+                    <select id="paint-type" class="form-control">
+                        <option value="8">Vinílica (8 m²/L por mano)</option>
+                        <option value="6">Acrílica (6 m²/L por mano)</option>
+                        <option value="5">Epóxica (5 m²/L por mano)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bucket-size">Tamaño del envase</label>
+                    <select id="bucket-size" class="form-control">
+                        <option value="1">1 galón (3.785 L)</option>
+                        <option value="4">4 galones (15.14 L)</option>
+                        <option value="5">5 galones (18.93 L)</option>
+                    </select>
+                </div>
+                
+                <button onclick="calculatePaint()" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-calculator"></i> Calcular
+                </button>
+                
+                <div id="result" class="calculator-result">
+                    <h3 class="result-title">Resultado</h3>
+                    <p>Necesitarás aproximadamente <strong><span id="buckets-needed">0</span> baldes</strong> de pintura.</p>
+                    <p>Total de litros requeridos: <strong><span id="total-liters">0</span> L</strong></p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">* Este cálculo es estimado. Para mayor precisión, consulta con un asesor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Trust Section -->
+    <section id="projects" class="projects-trust-section section">
+        <div class="container">
+            <h2 class="section-title">Proyectos que Confían en Nosotros</h2>
+            <p class="text-center" style="max-width: 800px; margin: 0 auto 50px;">Grandes empresas y proyectos emblemáticos han elegido nuestras pinturas para sus construcciones más importantes.</p>
+            
+            <div class="projects-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-track" id="projectsTrack">
+                        <div class="project-slide">
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Torre Empresarial">
+                                </div>
+                                <div class="project-info">
+                                    <h3>Torre Empresarial Centro</h3>
+                                    <p>Pintura exterior premium para 40 pisos</p>
+                                    <span class="project-category">Comercial</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-slide">
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Complejo Residencial">
+                                </div>
+                                <div class="project-info">
+                                    <h3>Complejo Residencial Alameda</h3>
+                                    <p>500 apartamentos con acabados de lujo</p>
+                                    <span class="project-category">Residencial</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-slide">
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Centro Comercial">
+                                </div>
+                                <div class="project-info">
+                                    <h3>Centro Comercial Plaza Norte</h3>
+                                    <p>Pintura antideslizante y decorativa</p>
+                                    <span class="project-category">Comercial</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-slide">
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Hospital">
+                                </div>
+                                <div class="project-info">
+                                    <h3>Hospital San José</h3>
+                                    <p>Pintura antibacteriana especializada</p>
+                                    <span class="project-category">Salud</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-slide">
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Escuela">
+                                </div>
+                                <div class="project-info">
+                                    <h3>Colegio Bilingüe Internacional</h3>
+                                    <p>Colores vibrantes y seguros para niños</p>
+                                    <span class="project-category">Educación</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-slide">
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Fábrica">
+                                </div>
+                                <div class="project-info">
+                                    <h3>Planta Industrial MetalCorp</h3>
+                                    <p>Pintura industrial resistente</p>
+                                    <span class="project-category">Industrial</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" onclick="moveCarousel(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" onclick="moveCarousel(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="carousel-indicators">
+                    <button class="indicator active" onclick="goToSlide(0)"></button>
+                    <button class="indicator" onclick="goToSlide(1)"></button>
+                    <button class="indicator" onclick="goToSlide(2)"></button>
+                    <button class="indicator" onclick="goToSlide(3)"></button>
+                    <button class="indicator" onclick="goToSlide(4)"></button>
+                    <button class="indicator" onclick="goToSlide(5)"></button>
+                </div>
+            </div>
+            
+            <div class="trust-stats">
+                <div class="stat-item">
+                    <div class="stat-number">+200</div>
+                    <div class="stat-label">Proyectos Completados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Años de Experiencia</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Grandes Empresas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Satisfacción Garantizada</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section section">
+        <div class="container">
+            <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
+            <p class="text-center" style="max-width: 600px; margin: 0 auto 50px;">La satisfacción de nuestros clientes es nuestra mejor carta de presentación.</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Excelente calidad y durabilidad. Llevo 3 años con la pintura y se ve como nueva. El asesoramiento técnico fue excepcional."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80" alt="Carlos Mendoza">
+                        </div>
+                        <div class="author-info">
+                            <h4>Carlos Mendoza</h4>
+                            <span>Constructor - Bogotá</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Los colores son exactamente como los esperaba. El simulador online me ayudó mucho a tomar la decisión correcta."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b5829526?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80" alt="Ana Rodríguez">
+                        </div>
+                        <div class="author-info">
+                            <h4>Ana Rodríguez</h4>
+                            <span>Diseñadora de Interiores</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Servicio excepcional desde la cotización hasta la entrega. La pintura se aplicó perfectamente y el resultado superó nuestras expectativas."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80" alt="Luis Herrera">
+                        </div>
+                        <div class="author-info">
+                            <h4>Luis Herrera</h4>
+                            <span>Gerente de Proyecto</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about-section section">
+        <div class="container">
+            <h2 class="section-title">Nuestra Empresa</h2>
+            
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3>Expertos en pinturas desde 1985</h3>
+                    <p>Somos una empresa comprometida con la calidad y la innovación en el sector de pinturas y recubrimientos. Nuestra misión es proporcionar soluciones duraderas y estéticas para cada proyecto.</p>
+                    
+                    <ul class="about-features">
+                        <li class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>+35 años de experiencia en el mercado</span>
+                        </li>
+                        <li class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Tecnología de última generación</span>
+                        </li>
+                        <li class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Compromiso con el medio ambiente</span>
+                        </li>
+                        <li class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Asesoría técnica profesional</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="btn btn-primary" onclick="showSection('contact', event)" style="margin-top: 20px;">
+                        <i class="fas fa-phone-alt"></i> Contáctanos
+                    </a>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Nuestras instalaciones">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section section">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <p class="text-center" style="max-width: 600px; margin: 0 auto 40px;">Estamos aquí para ayudarte con cualquier consulta sobre nuestros productos o proyectos</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Información de contacto</h3>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Dirección</h4>
+                            <p>Calle 123 #45-67, Bogotá, Colombia</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>+57 1 2345678</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@pinturaspremium.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Horario</h4>
+                            <p>Lunes a Viernes: 8am - 6pm<br>Sábados: 9am - 2pm</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Envíanos un mensaje</h3>
+                    
+                    <div class="form-group">
+                        <label for="name">Nombre completo</label>
+                        <input type="text" id="name" class="form-control" placeholder="Tu nombre">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" class="form-control" placeholder="tu@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Asunto</label>
+                        <select id="subject" class="form-control">
+                            <option value="consult">Consulta general</option>
+                            <option value="product">Información de producto</option>
+                            <option value="technical">Asesoría técnica</option>
+                            <option value="other">Otro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensaje</label>
+                        <textarea id="message" class="form-control" rows="5" placeholder="Escribe tu mensaje aquí..."></textarea>
+                    </div>
+                    
+                    <button onclick="submitContactForm()" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="footer-logo" onclick="showSection('home', event)">
+                        <i class="fas fa-paint-roller"></i> PinturasPremium
+                    </a>
+                    <p class="footer-about">Proveedores de pintura de calidad profesional para proyectos residenciales, comerciales e industriales.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Productos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showSection('products', event)">Pinturas para Interiores</a></li>
+                        <li><a href="#" onclick="showSection('products', event)">Pinturas para Exteriores</a></li>
+                        <li><a href="#" onclick="showSection('products', event)">Pinturas Especiales</a></li>
+                        <li><a href="#" onclick="showSection('products', event)">Herramientas y Accesorios</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showSection('calculator', event)">Calculadora de Pintura</a></li>
+                        <li><a href="#">Guías de Color</a></li>
+                        <li><a href="#">Tutoriales de Aplicación</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Empresa</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showSection('about', event)">Sobre Nosotros</a></li>
+                        <li><a href="#">Sostenibilidad</a></li>
+                        <li><a href="#">Trabaja con Nosotros</a></li>
+                        <li><a href="#" onclick="showSection('contact', event)">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 PinturasPremium. Todos los derechos reservados. | <a href="#" style="color: #aaaaaa;">Términos y Condiciones</a> | <a href="#" style="color: #aaaaaa;">Política de Privacidad</a></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JS -->
+    <script src="products.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
