@@ -65,7 +65,7 @@ function initializeSectionContent(sectionId) {
             renderProducts();
             break;
         case 'simulator':
-            initializeSimulator();
+            initializeBeforeAfterGallery();
             break;
         case 'projects':
             resetCarousel();
@@ -272,182 +272,133 @@ function submitContactForm() {
 }
 
 // =============================================
-// NUEVO SIMULADOR DE PINTURAS - FUNCIONES
+// GALERÍA ANTES Y DESPUÉS - FUNCIONES
 // =============================================
 
-// Variables globales del simulador
-let currentSelectedColor = '#8B4513';
-let currentSelectedColorName = 'Chocolate';
-let currentSelectedColorCode = '#8B4513';
-let currentRoom = 'living';
+// Variables globales de la galería
+let currentComparison = null;
 
-// Datos de las habitaciones
-const roomData = {
-    living: {
-        image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-        alt: 'Sala moderna',
-        walls: [
-            { id: 'wall-accent', label: 'Pared de Acento', style: 'top: 10%; right: 0%; width: 45%; height: 80%;' },
-            { id: 'wall-main', label: 'Pared Principal', style: 'top: 15%; left: 0%; width: 40%; height: 70%;' },
-            { id: 'wall-side', label: 'Rodapié', style: 'bottom: 0%; left: 20%; width: 60%; height: 15%;' }
-        ]
-    },
-    bedroom: {
-        image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-        alt: 'Dormitorio moderno',
-        walls: [
-            { id: 'wall-accent', label: 'Cabecera', style: 'top: 8%; right: 5%; width: 50%; height: 85%;' },
-            { id: 'wall-main', label: 'Pared Lateral', style: 'top: 20%; left: 0%; width: 35%; height: 60%;' },
-            { id: 'wall-side', label: 'Moldura', style: 'bottom: 5%; left: 15%; width: 70%; height: 10%;' }
-        ]
-    },
-    kitchen: {
-        image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-        alt: 'Cocina moderna',
-        walls: [
-            { id: 'wall-accent', label: 'Isla Central', style: 'bottom: 10%; left: 25%; width: 50%; height: 30%;' },
-            { id: 'wall-main', label: 'Pared Posterior', style: 'top: 5%; left: 5%; width: 90%; height: 40%;' },
-            { id: 'wall-side', label: 'Barra', style: 'top: 45%; right: 0%; width: 40%; height: 45%;' }
-        ]
-    }
-};
-
-function initializeSimulator() {
-    setupColorPalette();
-    setupWallClickHandlers();
-    setupRoomTabs();
-    updateSelectedColorDisplay();
-    renderRoom(currentRoom);
+// Inicializar galería Antes y Después
+function initializeBeforeAfterGallery() {
+    initializeSliders();
+    initializeUploadForm();
 }
 
-function setupColorPalette() {
-    const colorItems = document.querySelectorAll('.color-item');
-    colorItems.forEach(item => {
-        item.addEventListener('click', function() {
-            // Remove active class from all items
-            colorItems.forEach(c => c.classList.remove('active'));
-            // Add active class to clicked item
-            this.classList.add('active');
+// Inicializar sliders de comparación
+function initializeSliders() {
+    const sliders = document.querySelectorAll('.comparison-slider');
+    
+    sliders.forEach(slider => {
+        let isDragging = false;
+        
+        slider.addEventListener('mousedown', startDrag);
+        slider.addEventListener('touchstart', startDrag);
+        
+        function startDrag(e) {
+            isDragging = true;
+            const container = slider.closest('.comparison-container');
+            const rect = container.getBoundingClientRect();
             
-            // Update selected color variables
-            currentSelectedColor = this.getAttribute('data-color');
-            currentSelectedColorName = this.getAttribute('data-name');
-            currentSelectedColorCode = this.getAttribute('data-code');
-            
-            updateSelectedColorDisplay();
-        });
-    });
-}
-
-function setupWallClickHandlers() {
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('wall-overlay')) {
-            const wallElement = e.target;
-            
-            // Apply selected color with transparency for overlay effect
-            const colorWithOpacity = hexToRgba(currentSelectedColor, 0.7);
-            wallElement.style.background = colorWithOpacity;
-            
-            // Add visual feedback
-            wallElement.style.transform = 'scale(1.02)';
-            wallElement.style.borderColor = currentSelectedColor;
-            
-            setTimeout(() => {
-                wallElement.style.transform = 'scale(1)';
-            }, 200);
-            
-            // Update wall label with color name
-            const label = wallElement.querySelector('.wall-label');
-            if (label) {
-                label.textContent = `${label.textContent.split(' - ')[0]} - ${currentSelectedColorName}`;
+            function onDrag(e) {
+                if (!isDragging) return;
+                
+                const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+                const percentage = Math.min(Math.max((clientX - rect.left) / rect.width * 100, 0), 100);
+                
+                updateComparison(container, percentage);
             }
+            
+            function stopDrag() {
+                isDragging = false;
+                document.removeEventListener('mousemove', onDrag);
+                document.removeEventListener('mouseup', stopDrag);
+                document.removeEventListener('touchmove', onDrag);
+                document.removeEventListener('touchend', stopDrag);
+            }
+            
+            document.addEventListener('mousemove', onDrag);
+            document.addEventListener('mouseup', stopDrag);
+            document.addEventListener('touchmove', onDrag);
+            document.addEventListener('touchend', stopDrag);
+            
+            e.preventDefault();
         }
     });
 }
 
-function setupRoomTabs() {
-    const roomTabs = document.querySelectorAll('.room-tab');
-    roomTabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            const roomType = this.getAttribute('data-room');
-            changeRoom(roomType);
+// Actualizar posición del slider de comparación
+function updateComparison(container, percentage) {
+    const slider = container.querySelector('.comparison-slider');
+    const afterImage = container.querySelector('.after-image');
+    
+    slider.style.left = percentage + '%';
+    afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
+}
+
+// Inicializar formulario de subida
+function initializeUploadForm() {
+    const uploadForm = document.getElementById('uploadForm');
+    const fileInputs = document.querySelectorAll('input[type="file"]');
+    
+    // Manejar cambios en inputs de archivos
+    fileInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            const label = this.nextElementSibling;
+            const fileName = this.files[0] ? this.files[0].name : 'Seleccionar archivo';
+            label.textContent = fileName;
         });
     });
+    
+    // Manejar envío del formulario
+    if (uploadForm) {
+        uploadForm.addEventListener('submit', handleUploadSubmit);
+    }
 }
 
-function changeRoom(roomType) {
-    if (!roomData[roomType]) return;
+// Manejar envío del formulario de subida
+function handleUploadSubmit(e) {
+    e.preventDefault();
     
-    currentRoom = roomType;
+    const formData = new FormData(e.target);
+    const clientName = formData.get('clientName');
+    const projectType = formData.get('projectType');
+    const beforeImage = formData.get('beforeImage');
+    const afterImage = formData.get('afterImage');
+    const description = formData.get('description');
     
-    // Update active tab
-    document.querySelectorAll('.room-tab').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    document.querySelector(`[data-room="${roomType}"]`).classList.add('active');
-    
-    // Render new room
-    renderRoom(roomType);
-}
-
-function renderRoom(roomType) {
-    const room = roomData[roomType];
-    const container = document.querySelector('.room-image-container');
-    
-    // Update room image
-    const roomImage = container.querySelector('.room-background');
-    if (roomImage) {
-        roomImage.src = room.image;
-        roomImage.alt = room.alt;
+    if (!clientName || !beforeImage || !afterImage) {
+        showNotification('Por favor completa los campos obligatorios', 'error');
+        return;
     }
     
-    // Remove existing overlays
-    const existingOverlays = container.querySelectorAll('.wall-overlay');
-    existingOverlays.forEach(overlay => overlay.remove());
+    // Crear mensaje para WhatsApp
+    const whatsappMessage = `Nuevo proyecto para galería:\n\nCliente: ${clientName}\nTipo: ${projectType}\nDescripción: ${description}\n\n¡He adjuntado las fotos antes y después!`;
+    const whatsappUrl = `https://wa.me/573134312484?text=${encodeURIComponent(whatsappMessage)}`;
     
-    // Create new wall overlays based on room data
-    room.walls.forEach((wall, index) => {
-        const overlay = document.createElement('div');
-        overlay.className = 'wall-overlay';
-        overlay.id = wall.id;
-        overlay.setAttribute('data-wall', wall.id);
-        overlay.setAttribute('style', `position: absolute; ${wall.style} background: rgba(245, 245, 220, 0.4); border-radius: 8px; cursor: pointer; transition: all 0.3s;`);
-        
-        const label = document.createElement('div');
-        label.className = 'wall-label';
-        label.textContent = wall.label;
-        
-        overlay.appendChild(label);
-        container.appendChild(overlay);
+    window.open(whatsappUrl, '_blank');
+    
+    showNotification('¡Gracias! Tu proyecto ha sido enviado. Nos pondremos en contacto contigo pronto.', 'success');
+    e.target.reset();
+    
+    // Resetear labels de archivos
+    const fileLabels = document.querySelectorAll('.file-input-label');
+    fileLabels.forEach(label => {
+        if (label.textContent !== 'Seleccionar archivo') {
+            label.textContent = 'Seleccionar archivo';
+        }
     });
 }
 
-function updateSelectedColorDisplay() {
-    const colorPreview = document.getElementById('selectedColorPreview');
-    const colorName = document.getElementById('selectedColorName');
-    const colorCode = document.getElementById('selectedColorCode');
-    
-    if (colorPreview) colorPreview.style.backgroundColor = currentSelectedColor;
-    if (colorName) colorName.textContent = currentSelectedColorName;
-    if (colorCode) colorCode.textContent = currentSelectedColorCode;
-}
-
-// Utility function to convert hex to rgba
-function hexToRgba(hex, alpha) {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
-
-function requestColorAdvice() {
-    const whatsappMessage = `Hola, necesito asesoría sobre el color ${currentSelectedColorName} (${currentSelectedColorCode}) para mi proyecto. ¿Podrían ayudarme con recomendaciones de aplicación y acabados?`;
+// Funciones para galería de proyectos
+function requestProjectQuote(projectTitle, colors) {
+    const colorList = colors.map(color => color.name).join(', ');
+    const whatsappMessage = `Hola, me interesa un proyecto similar a "${projectTitle}" con los colores: ${colorList}. ¿Podrían enviarme una cotización?`;
     const whatsappUrl = `https://wa.me/573134312484?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
 }
 
-function requestColorQuote() {
-    const whatsappMessage = `Hola, estoy interesado en una cotización para el color ${currentSelectedColorName} (${currentSelectedColorCode}). ¿Podrían ayudarme?`;
+function requestProjectAdvice(projectTitle) {
+    const whatsappMessage = `Hola, me gustaría recibir asesoría sobre un proyecto similar a "${projectTitle}". ¿Podrían ayudarme con recomendaciones?`;
     const whatsappUrl = `https://wa.me/573134312484?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
 }
@@ -633,7 +584,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Initialize simulator if on simulator section
+    // Initialize gallery if on simulator section
     if (window.location.hash === '#simulator') {
         showSection('simulator');
     }

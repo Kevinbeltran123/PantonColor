@@ -28,7 +28,7 @@
             </a>
                 <ul class="nav-links">
                     <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('products', event)"><i class="fas fa-paint-brush"></i> Productos</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('simulator', event)"><i class="fas fa-palette"></i> Simulador</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('simulator', event)"><i class="fas fa-images"></i> Galería</a></li>
                     <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('calculator', event)"><i class="fas fa-calculator"></i> Calculadora</a></li>
                     <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('projects', event)"><i class="fas fa-building"></i> Proyectos</a></li>
                     <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('about', event)"><i class="fas fa-info-circle"></i> Nosotros</a></li>
@@ -69,7 +69,7 @@
                 
                 <div class="hero-btns">
                     <a href="#" class="btn btn-primary" onclick="showSection('simulator', event)">
-                        <i class="fas fa-palette"></i> Simular Colores
+                        <i class="fas fa-images"></i> Ver Galería
                     </a>
                     <a href="#" class="btn btn-secondary" onclick="showSection('products', event)">
                         <i class="fas fa-shopping-cart"></i> Ver Catálogo
@@ -110,200 +110,162 @@
         </div>
     </section>
 
-    <!-- Paint Simulator Section -->
-    <section id="simulator" class="paint-simulator-section section">
+    <!-- Before & After Gallery Section -->
+    <section id="simulator" class="before-after-section section">
         <div class="container">
-            <h2 class="section-title">Simulador de Colores</h2>
-            <p class="section-subtitle">Visualiza cómo se verían los colores en tu espacio. Selecciona un color y haz clic en las paredes para pintarlas.</p>
+            <h2 class="section-title">Antes y Después</h2>
+            <p class="section-subtitle">Descubre el impacto real de nuestros productos en espacios auténticos. Desliza para ver la transformación.</p>
             
-            <div class="simulator-layout">
-                <!-- Color Palette Sidebar -->
-                <div class="color-palette-sidebar">
-                    <div class="sidebar-header">
-                        <h3>Paleta de Colores</h3>
-                        <p>Selecciona el color que deseas aplicar</p>
-                    </div>
-                    
-                    <!-- Terrestres/Neutros -->
-                    <div class="color-category">
-                        <h4>Terrestres & Neutros</h4>
-                        <div class="color-list">
-                            <div class="color-item active" data-color="#8B4513" data-name="Chocolate" data-code="#8B4513">
-                                <div class="color-swatch" style="background-color: #8B4513;"></div>
-                                <div class="color-info">
-                                    <span class="color-name">Chocolate</span>
-                                    <span class="color-code">#8B4513</span>
-                                </div>
-                            </div>
-                            <div class="color-item" data-color="#D2B48C" data-name="Ciprés" data-code="#D2B48C">
-                                <div class="color-swatch" style="background-color: #D2B48C;"></div>
-                                <div class="color-info">
-                                    <span class="color-name">Ciprés</span>
-                                    <span class="color-code">#D2B48C</span>
-                                </div>
-                            </div>
-                            <div class="color-item" data-color="#F5F5DC" data-name="Blanco Hueso" data-code="#F5F5DC">
-                                <div class="color-swatch" style="background-color: #F5F5DC;"></div>
-                                <div class="color-info">
-                                    <span class="color-name">Blanco Hueso</span>
-                                    <span class="color-code">#F5F5DC</span>
-                                </div>
-                            </div>
-                            <div class="color-item" data-color="#F5DEB3" data-name="Champaña" data-code="#F5DEB3">
-                                <div class="color-swatch" style="background-color: #F5DEB3;"></div>
-                                <div class="color-info">
-                                    <span class="color-name">Champaña</span>
-                                    <span class="color-code">#F5DEB3</span>
-                                </div>
-                            </div>
-                            <div class="color-item" data-color="#A0522D" data-name="Bruma" data-code="#A0522D">
-                                <div class="color-swatch" style="background-color: #A0522D;"></div>
-                                <div class="color-info">
-                                    <span class="color-name">Bruma</span>
-                                    <span class="color-code">#A0522D</span>
-                                </div>
-                            </div>
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+                <!-- Proyecto 1: Sala Moderna -->
+                <div class="before-after-item">
+                    <div class="comparison-container" data-project="1">
+                        <div class="twentytwenty-container">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sala antes - paredes blancas" class="before-image">
+                            <img src="https://images.unsplash.com/photo-1566908829550-e6883a9a03e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sala después - pared de acento naranja" class="after-image">
                         </div>
                     </div>
-                    
-                    <!-- Cálidos -->
-                    <div class="color-category">
-                        <h4>Cálidos & Vibrantes</h4>
-                        <div class="color-list">
-                            <div class="color-item" data-color="#FF8C00" data-name="Naranja Chic" data-code="#FF8C00">
-                                <div class="color-swatch" style="background-color: #FF8C00;"></div>
-                                <div class="color-info">
-                                    <span class="color-name">Naranja Chic</span>
-                                    <span class="color-code">#FF8C00</span>
-                                </div>
-                            </div>
-                            <div class="color-item" data-color="#FFD700" data-name="Amarillo" data-code="#FFD700">
-                                <div class="color-swatch" style="background-color: #FFD700;"></div>
-                                <div class="color-info">
-                                    <span class="color-name">Amarillo</span>
-                                    <span class="color-code">#FFD700</span>
-                                </div>
-                            </div>
-                            <div class="color-item" data-color="#FF6347" data-name="Mandarina" data-code="#FF6347">
-                                <div class="color-swatch" style="background-color: #FF6347;"></div>
-                                <div class="color-info">
-                                    <span class="color-name">Mandarina</span>
-                                    <span class="color-code">#FF6347</span>
-                                </div>
-                            </div>
-                            <div class="color-item" data-color="#DC143C" data-name="Rojo Vivo" data-code="#DC143C">
-                                <div class="color-swatch" style="background-color: #DC143C;"></div>
-                                <div class="color-info">
-                                    <span class="color-name">Rojo Vivo</span>
-                                    <span class="color-code">#DC143C</span>
-                                </div>
+                    <div class="project-info">
+                        <h3>Transformación de Sala</h3>
+                        <div class="color-details">
+                            <div class="color-swatch" style="background-color: #FF8C00;"></div>
+                            <div class="color-info">
+                                <span class="color-name">Naranja Chic</span>
+                                <span class="color-code">#FF8C00</span>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Fríos -->
-                    <div class="color-category">
-                        <h4>Fríos & Modernos</h4>
-                        <div class="color-list">
-                            <div class="color-item" data-color="#20B2AA" data-name="Verde Tropical" data-code="#20B2AA">
-                                <div class="color-swatch" style="background-color: #20B2AA;"></div>
-                                <div class="color-info">
-                                    <span class="color-name">Verde Tropical</span>
-                                    <span class="color-code">#20B2AA</span>
-                                </div>
-                            </div>
-                            <div class="color-item" data-color="#4682B4" data-name="Azul Océano" data-code="#4682B4">
-                                <div class="color-swatch" style="background-color: #4682B4;"></div>
-                                <div class="color-info">
-                                    <span class="color-name">Azul Océano</span>
-                                    <span class="color-code">#4682B4</span>
-                                </div>
-                            </div>
-                            <div class="color-item" data-color="#483D8B" data-name="Azul Oscuro" data-code="#483D8B">
-                                <div class="color-swatch" style="background-color: #483D8B;"></div>
-                                <div class="color-info">
-                                    <span class="color-name">Azul Oscuro</span>
-                                    <span class="color-code">#483D8B</span>
-                                </div>
-                            </div>
-                            <div class="color-item" data-color="#2F4F4F" data-name="Gris Basalto" data-code="#2F4F4F">
-                                <div class="color-swatch" style="background-color: #2F4F4F;"></div>
-                                <div class="color-info">
-                                    <span class="color-name">Gris Basalto</span>
-                                    <span class="color-code">#2F4F4F</span>
-                                </div>
-                            </div>
+                        <p class="project-description">Pared de acento que transforma completamente el ambiente del living, creando un punto focal dinámico y moderno.</p>
+                        <div class="client-testimonial">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"El cambio fue increíble. Nuestra sala pasó de ser un espacio frío a ser el corazón cálido de nuestro hogar."</p>
+                            <span class="client-name">- María González, Bogotá</span>
                         </div>
-                    </div>
-                    
-                    <!-- Selected Color Display -->
-                    <div class="selected-color-info">
-                        <div class="selected-color-display">
-                            <div class="color-preview" id="selectedColorPreview" style="background-color: #8B4513;"></div>
-                            <div class="color-details">
-                                <span class="selected-name" id="selectedColorName">Chocolate</span>
-                                <span class="selected-code" id="selectedColorCode">#8B4513</span>
-                            </div>
-                        </div>
-                        <button class="btn-advice" onclick="requestColorAdvice()">
-                            <i class="fas fa-user-tie"></i> Recibir Asesoría
-                        </button>
                     </div>
                 </div>
                 
-                <!-- Room Viewer -->
-                <div class="room-viewer">
-                    <div class="room-container">
-                        <!-- Real Room Image with Overlays -->
-                        <div class="room-image-container">
-                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Sala moderna" class="room-background">
-                            
-                            <!-- Clickable Wall Overlays -->
-                            <div class="wall-overlay wall-accent" id="wall-accent" data-wall="accent" 
-                                 style="position: absolute; top: 10%; right: 0%; width: 45%; height: 80%; background: rgba(255, 140, 0, 0.6); border-radius: 8px; cursor: pointer; transition: all 0.3s;">
-                                <div class="wall-label">Pared de Acento</div>
+                <!-- Proyecto 2: Dormitorio -->
+                <div class="before-after-item">
+                    <div class="comparison-container" data-project="2">
+                        <div class="twentytwenty-container">
+                            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dormitorio antes - blanco básico" class="before-image">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dormitorio después - azul sereno" class="after-image">
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Recámara Serena</h3>
+                        <div class="color-details">
+                            <div class="color-swatch" style="background-color: #4682B4;"></div>
+                            <div class="color-info">
+                                <span class="color-name">Azul Océano</span>
+                                <span class="color-code">#4682B4</span>
                             </div>
-                            
-                            <div class="wall-overlay wall-main" id="wall-main" data-wall="main"
-                                 style="position: absolute; top: 15%; left: 0%; width: 40%; height: 70%; background: rgba(245, 245, 220, 0.4); border-radius: 8px; cursor: pointer; transition: all 0.3s;">
-                                <div class="wall-label">Pared Principal</div>
+                        </div>
+                        <p class="project-description">Una cabecera en azul océano que aporta serenidad y sofisticación al dormitorio principal.</p>
+                        <div class="client-testimonial">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"Ahora tenemos el dormitorio relajante que siempre quisimos. El color nos ayuda a descansar mejor."</p>
+                            <span class="client-name">- Carlos Mendoza, Medellín</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 3: Fachada -->
+                <div class="before-after-item">
+                    <div class="comparison-container" data-project="3">
+                        <div class="twentytwenty-container">
+                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fachada antes - desgastada" class="before-image">
+                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fachada después - renovada" class="after-image">
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Renovación de Fachada</h3>
+                        <div class="color-details">
+                            <div class="color-swatch" style="background-color: #2F4F4F;"></div>
+                            <div class="color-info">
+                                <span class="color-name">Gris Basalto</span>
+                                <span class="color-code">#2F4F4F</span>
                             </div>
-                            
-                            <div class="wall-overlay wall-side" id="wall-side" data-wall="side"
-                                 style="position: absolute; bottom: 0%; left: 20%; width: 60%; height: 15%; background: rgba(245, 245, 220, 0.4); border-radius: 8px; cursor: pointer; transition: all 0.3s;">
-                                <div class="wall-label">Rodapié</div>
+                        </div>
+                        <p class="project-description">Fachada exterior renovada con pintura resistente al clima, devolviendo vida y elegancia al inmueble.</p>
+                        <div class="client-testimonial">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"La transformación superó nuestras expectativas. Nuestro edificio luce como nuevo y más moderno."</p>
+                            <span class="client-name">- Ana Torres, Cali</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 4: Cocina -->
+                <div class="before-after-item">
+                    <div class="comparison-container" data-project="4">
+                        <div class="twentytwenty-container">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cocina antes - básica" class="before-image">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cocina después - moderna" class="after-image">
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Cocina Contemporánea</h3>
+                        <div class="color-details">
+                            <div class="color-swatch" style="background-color: #F5F5DC;"></div>
+                            <div class="color-info">
+                                <span class="color-name">Blanco Hueso</span>
+                                <span class="color-code">#F5F5DC</span>
+                            </div>
+                        </div>
+                        <p class="project-description">Cocina integral renovada con tonos neutros que aportan luminosidad y amplitud al espacio.</p>
+                        <div class="client-testimonial">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"Nuestra cocina se siente mucho más amplia y luminosa. Es un placer cocinar aquí ahora."</p>
+                            <span class="client-name">- Luis Ramírez, Barranquilla</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <div class="upload-container">
+                    <h3>¿Tienes tu propio proyecto?</h3>
+                    <p>Comparte tu transformación con Panton Color y inspira a otros</p>
+                    
+                    <form class="upload-form" id="uploadForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="projectName">Nombre del Proyecto</label>
+                                <input type="text" id="projectName" name="projectName" placeholder="Ej: Renovación de mi sala" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="colorUsed">Color Utilizado</label>
+                                <input type="text" id="colorUsed" name="colorUsed" placeholder="Ej: Naranja Chic #FF8C00" required>
                             </div>
                         </div>
                         
-                        <!-- Room Tabs -->
-                        <div class="room-tabs">
-                            <button class="room-tab active" data-room="living" onclick="changeRoom('living')">
-                                <i class="fas fa-couch"></i> Sala
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="beforePhoto">Foto Antes</label>
+                                <input type="file" id="beforePhoto" name="beforePhoto" accept="image/*" required>
+                                <span class="file-info">Formatos: JPG, PNG. Máx: 5MB</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="afterPhoto">Foto Después</label>
+                                <input type="file" id="afterPhoto" name="afterPhoto" accept="image/*" required>
+                                <span class="file-info">Formatos: JPG, PNG. Máx: 5MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="testimonial">Tu Experiencia (Opcional)</label>
+                            <textarea id="testimonial" name="testimonial" placeholder="Cuéntanos sobre tu experiencia con nuestros productos..." rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-upload"></i> Enviar Proyecto
                             </button>
-                            <button class="room-tab" data-room="bedroom" onclick="changeRoom('bedroom')">
-                                <i class="fas fa-bed"></i> Dormitorio
-                            </button>
-                            <button class="room-tab" data-room="kitchen" onclick="changeRoom('kitchen')">
-                                <i class="fas fa-utensils"></i> Cocina
-                            </button>
+                            <p class="upload-note">*Tu proyecto será revisado antes de publicarse en nuestra galería</p>
                         </div>
-                    </div>
-                    
-                    <!-- Instructions -->
-                    <div class="simulator-instructions">
-                        <div class="instruction-item">
-                            <i class="fas fa-mouse-pointer"></i>
-                            <span>Selecciona un color de la paleta lateral</span>
-                        </div>
-                        <div class="instruction-item">
-                            <i class="fas fa-hand-pointer"></i>
-                            <span>Haz clic en las áreas de las paredes para pintarlas</span>
-                        </div>
-                        <div class="instruction-item">
-                            <i class="fas fa-eye"></i>
-                            <span>Visualiza los resultados en tiempo real</span>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
