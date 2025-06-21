@@ -1155,16 +1155,442 @@ header:hover {
 }
 
 /* Color Simulator Section */
-.simulator-section {
-    background: var(--light);
+/* =============================================
+   PAINT SIMULATOR SECTION - NUEVO DISEÑO
+   ============================================= */
+
+.paint-simulator-section {
+    background: var(--white);
+    padding: 80px 0;
+    min-height: 100vh;
 }
 
-.simulator-container {
+.section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Layout Principal del Simulador */
+.simulator-layout {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 350px 1fr;
     gap: 40px;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
+    align-items: start;
+}
+
+/* =============================================
+   COLOR PALETTE SIDEBAR
+   ============================================= */
+
+.color-palette-sidebar {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(45, 55, 72, 0.08);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.sidebar-header h3 {
+    color: var(--primary-dark);
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.sidebar-header p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Categorías de Colores */
+.color-category {
+    margin-bottom: 24px;
+}
+
+.color-category h4 {
+    color: var(--primary);
+    font-size: 1rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+    padding-left: 8px;
+    border-left: 3px solid var(--accent);
+}
+
+.color-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.color-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.color-item:hover {
+    background: var(--light-gray);
+    transform: translateX(4px);
+}
+
+.color-item.active {
+    background: var(--secondary-light);
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(49, 130, 206, 0.15);
+}
+
+.color-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 2px solid var(--white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.color-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.color-name {
+    font-weight: 500;
+    color: var(--text);
+    font-size: 0.9rem;
+}
+
+.color-code {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: 'Courier New', monospace;
+}
+
+/* Color Seleccionado */
+.selected-color-info {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+}
+
+.selected-color-display {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--light-gray);
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.color-preview {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    border: 3px solid var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.color-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.selected-name {
+    font-weight: 600;
+    color: var(--primary-dark);
+    font-size: 1rem;
+}
+
+.selected-code {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-family: 'Courier New', monospace;
+}
+
+.btn-advice {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-advice:hover {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
+}
+
+/* =============================================
+   ROOM VIEWER
+   ============================================= */
+
+.room-viewer {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(45, 55, 72, 0.08);
+}
+
+.room-container {
+    position: relative;
+}
+
+.room-image-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.room-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Wall Overlays */
+.wall-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.wall-overlay:hover {
+    opacity: 1;
+    transform: scale(1.02);
+    border-color: var(--accent);
+    box-shadow: 0 4px 16px rgba(49, 130, 206, 0.3);
+}
+
+.wall-label {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    pointer-events: none;
+}
+
+/* Room Tabs */
+.room-tabs {
+    display: flex;
+    background: var(--light-gray);
+    border-top: 1px solid var(--border);
+}
+
+.room-tab {
+    flex: 1;
+    padding: 16px 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--text-light);
+    font-weight: 500;
+    border-right: 1px solid var(--border);
+}
+
+.room-tab:last-child {
+    border-right: none;
+}
+
+.room-tab:hover {
+    background: var(--white);
+    color: var(--accent);
+}
+
+.room-tab.active {
+    background: var(--accent);
+    color: var(--white);
+}
+
+/* Instrucciones */
+.simulator-instructions {
+    padding: 24px;
+    background: var(--light-gray);
+    border-top: 1px solid var(--border);
+}
+
+.instruction-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.instruction-item:last-child {
+    margin-bottom: 0;
+}
+
+.instruction-item i {
+    color: var(--accent);
+    width: 16px;
+    text-align: center;
+}
+
+/* =============================================
+   RESPONSIVE DESIGN - SIMULADOR
+   ============================================= */
+
+@media (max-width: 1024px) {
+    .simulator-layout {
+        grid-template-columns: 320px 1fr;
+        gap: 24px;
+    }
+    
+    .color-palette-sidebar {
+        position: static;
+        width: 100%;
+    }
+    
+    .room-image-container {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .paint-simulator-section {
+        padding: 60px 0;
+    }
+    
+    .simulator-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .color-palette-sidebar {
+        order: 2;
+        padding: 20px;
+    }
+    
+    .room-viewer {
+        order: 1;
+    }
+    
+    .room-image-container {
+        height: 300px;
+    }
+    
+    .color-category h4 {
+        font-size: 0.9rem;
+    }
+    
+    .color-item {
+        padding: 10px;
+    }
+    
+    .color-swatch {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .room-tabs {
+        flex-direction: column;
+    }
+    
+    .room-tab {
+        padding: 12px 16px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+    
+    .room-tab:last-child {
+        border-bottom: none;
+    }
+    
+    .simulator-instructions {
+        padding: 16px;
+    }
+    
+    .instruction-item {
+        font-size: 0.8rem;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 24px;
+    }
+    
+    .color-palette-sidebar {
+        padding: 16px;
+    }
+    
+    .sidebar-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .color-category {
+        margin-bottom: 20px;
+    }
+    
+    .room-image-container {
+        height: 250px;
+    }
+    
+    .wall-label {
+        font-size: 0.8rem;
+        padding: 6px 8px;
+    }
+    
+    .selected-color-display {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .color-preview {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+    }
 }
 
 .simulator-controls {

@@ -271,28 +271,53 @@ function submitContactForm() {
     document.querySelector('.contact-form').reset();
 }
 
-// Enhanced 3D Simulator Functions
+// =============================================
+// NUEVO SIMULADOR DE PINTURAS - FUNCIONES
+// =============================================
+
+// Variables globales del simulador
+let currentSelectedColor = '#8B4513';
+let currentSelectedColorName = 'Chocolate';
+let currentSelectedColorCode = '#8B4513';
+let currentRoom = 'living';
+
+// Datos de las habitaciones
+const roomData = {
+    living: {
+        image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+        alt: 'Sala moderna',
+        walls: [
+            { id: 'wall-accent', label: 'Pared de Acento', style: 'top: 10%; right: 0%; width: 45%; height: 80%;' },
+            { id: 'wall-main', label: 'Pared Principal', style: 'top: 15%; left: 0%; width: 40%; height: 70%;' },
+            { id: 'wall-side', label: 'Rodapié', style: 'bottom: 0%; left: 20%; width: 60%; height: 15%;' }
+        ]
+    },
+    bedroom: {
+        image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+        alt: 'Dormitorio moderno',
+        walls: [
+            { id: 'wall-accent', label: 'Cabecera', style: 'top: 8%; right: 5%; width: 50%; height: 85%;' },
+            { id: 'wall-main', label: 'Pared Lateral', style: 'top: 20%; left: 0%; width: 35%; height: 60%;' },
+            { id: 'wall-side', label: 'Moldura', style: 'bottom: 5%; left: 15%; width: 70%; height: 10%;' }
+        ]
+    },
+    kitchen: {
+        image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+        alt: 'Cocina moderna',
+        walls: [
+            { id: 'wall-accent', label: 'Isla Central', style: 'bottom: 10%; left: 25%; width: 50%; height: 30%;' },
+            { id: 'wall-main', label: 'Pared Posterior', style: 'top: 5%; left: 5%; width: 90%; height: 40%;' },
+            { id: 'wall-side', label: 'Barra', style: 'top: 45%; right: 0%; width: 40%; height: 45%;' }
+        ]
+    }
+};
+
 function initializeSimulator() {
-    setupTextureSelection();
     setupColorPalette();
     setupWallClickHandlers();
+    setupRoomTabs();
     updateSelectedColorDisplay();
-}
-
-function setupTextureSelection() {
-    const textureOptions = document.querySelectorAll('.texture-option');
-    textureOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            // Remove active class from all texture options
-            textureOptions.forEach(o => o.classList.remove('active'));
-            // Add active class to clicked option
-            this.classList.add('active');
-            
-            const selectedTexture = this.getAttribute('data-texture');
-            console.log('Selected texture:', selectedTexture);
-            // You can add texture effects to walls here if needed
-        });
-    });
+    renderRoom(currentRoom);
 }
 
 function setupColorPalette() {
@@ -304,49 +329,125 @@ function setupColorPalette() {
             // Add active class to clicked item
             this.classList.add('active');
             
-            selectedColor = this.getAttribute('data-color');
-            selectedColorName = this.getAttribute('data-name');
+            // Update selected color variables
+            currentSelectedColor = this.getAttribute('data-color');
+            currentSelectedColorName = this.getAttribute('data-name');
+            currentSelectedColorCode = this.getAttribute('data-code');
+            
             updateSelectedColorDisplay();
         });
     });
 }
 
 function setupWallClickHandlers() {
-    const walls = document.querySelectorAll('.wall');
-    walls.forEach(wall => {
-        wall.addEventListener('click', function() {
-            // Apply selected color to clicked wall
-            this.style.backgroundColor = selectedColor;
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('wall-overlay')) {
+            const wallElement = e.target;
             
-            // Add a subtle animation
-            this.style.transform = this.style.transform + ' scale(1.02)';
+            // Apply selected color with transparency for overlay effect
+            const colorWithOpacity = hexToRgba(currentSelectedColor, 0.7);
+            wallElement.style.background = colorWithOpacity;
+            
+            // Add visual feedback
+            wallElement.style.transform = 'scale(1.02)';
+            wallElement.style.borderColor = currentSelectedColor;
+            
             setTimeout(() => {
-                this.style.transform = this.style.transform.replace(' scale(1.02)', '');
+                wallElement.style.transform = 'scale(1)';
             }, 200);
+            
+            // Update wall label with color name
+            const label = wallElement.querySelector('.wall-label');
+            if (label) {
+                label.textContent = `${label.textContent.split(' - ')[0]} - ${currentSelectedColorName}`;
+            }
+        }
+    });
+}
+
+function setupRoomTabs() {
+    const roomTabs = document.querySelectorAll('.room-tab');
+    roomTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const roomType = this.getAttribute('data-room');
+            changeRoom(roomType);
         });
     });
 }
 
-function updateSelectedColorDisplay() {
-    const colorDisplay = document.getElementById('selectedColorDisplay');
-    const colorNameEl = document.getElementById('currentColorName');
-    const colorCodeEl = document.getElementById('currentColorCode');
+function changeRoom(roomType) {
+    if (!roomData[roomType]) return;
     
-    if (colorDisplay) colorDisplay.style.backgroundColor = selectedColor;
-    if (colorNameEl) colorNameEl.textContent = selectedColorName;
-    if (colorCodeEl) colorCodeEl.textContent = selectedColor;
+    currentRoom = roomType;
+    
+    // Update active tab
+    document.querySelectorAll('.room-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    document.querySelector(`[data-room="${roomType}"]`).classList.add('active');
+    
+    // Render new room
+    renderRoom(roomType);
+}
+
+function renderRoom(roomType) {
+    const room = roomData[roomType];
+    const container = document.querySelector('.room-image-container');
+    
+    // Update room image
+    const roomImage = container.querySelector('.room-background');
+    if (roomImage) {
+        roomImage.src = room.image;
+        roomImage.alt = room.alt;
+    }
+    
+    // Remove existing overlays
+    const existingOverlays = container.querySelectorAll('.wall-overlay');
+    existingOverlays.forEach(overlay => overlay.remove());
+    
+    // Create new wall overlays based on room data
+    room.walls.forEach((wall, index) => {
+        const overlay = document.createElement('div');
+        overlay.className = 'wall-overlay';
+        overlay.id = wall.id;
+        overlay.setAttribute('data-wall', wall.id);
+        overlay.setAttribute('style', `position: absolute; ${wall.style} background: rgba(245, 245, 220, 0.4); border-radius: 8px; cursor: pointer; transition: all 0.3s;`);
+        
+        const label = document.createElement('div');
+        label.className = 'wall-label';
+        label.textContent = wall.label;
+        
+        overlay.appendChild(label);
+        container.appendChild(overlay);
+    });
+}
+
+function updateSelectedColorDisplay() {
+    const colorPreview = document.getElementById('selectedColorPreview');
+    const colorName = document.getElementById('selectedColorName');
+    const colorCode = document.getElementById('selectedColorCode');
+    
+    if (colorPreview) colorPreview.style.backgroundColor = currentSelectedColor;
+    if (colorName) colorName.textContent = currentSelectedColorName;
+    if (colorCode) colorCode.textContent = currentSelectedColorCode;
+}
+
+// Utility function to convert hex to rgba
+function hexToRgba(hex, alpha) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
 function requestColorAdvice() {
-    const whatsappMessage = `Hola, necesito asesoría sobre el color ${selectedColorName} (${selectedColor}) para mi proyecto. ¿Podrían ayudarme con recomendaciones de aplicación y acabados?`;
+    const whatsappMessage = `Hola, necesito asesoría sobre el color ${currentSelectedColorName} (${currentSelectedColorCode}) para mi proyecto. ¿Podrían ayudarme con recomendaciones de aplicación y acabados?`;
     const whatsappUrl = `https://wa.me/573134312484?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
 }
 
 function requestColorQuote() {
-    const colorName = document.getElementById('selectedColorName').textContent;
-    const colorCode = document.getElementById('selectedColorCode').textContent;
-    const whatsappMessage = `Hola, estoy interesado en una cotización para el color ${colorName} (${colorCode}). ¿Podrían ayudarme?`;
+    const whatsappMessage = `Hola, estoy interesado en una cotización para el color ${currentSelectedColorName} (${currentSelectedColorCode}). ¿Podrían ayudarme?`;
     const whatsappUrl = `https://wa.me/573134312484?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
 }
