@@ -1,50 +1,50 @@
 const products = [
     {
         id: 1,
-        name: "Viniltex Bloculdado",
-        description: "Pintura vinílica de máxima duración para interiores con protección antibacteriana.",
+        name: "Caneca - Vinilo Tipo 1",
+        description: "Pintura vinílica de máxima duración y recubrimiento, para exteriores e interiores.",
         category: "interior",
         price: "$85.000",
-        image: "https://via.placeholder.com/300x200?text=Viniltex+Bloculdado"
+        image: "images/MockupVintTipo1.png"
     },
     {
         id: 2,
-        name: "Acrílica Alta Asepsia",
-        description: "Pintura acrílica especial para hospitales y clínicas con propiedades antimicrobianas.",
+        name: "Caneca - Vinilo Tipo 2",
+        description: "Pintura vinílica, ideal para interiores, de fácil lavado y mantenimiento.",
         category: "interior",
         price: "$92.000",
-        image: "https://via.placeholder.com/300x200?text=Acrílica+Alta+Asepsia"
+        image: "images/MockupVinTipo2.png"
     },
     {
         id: 3,
-        name: "WeatherShield Exterior",
-        description: "Pintura para exteriores con protección UV y resistencia a condiciones climáticas extremas.",
-        category: "exterior",
+        name: "Canceca - Vinilo Tipo 3",
+        description: "Pintura para interior, de fácil limpieza.",
+        category: "interior",
         price: "$110.000",
-        image: "https://via.placeholder.com/300x200?text=WeatherShield+Exterior"
+        image: "images/MockupVinTipo3.png"
     },
     {
         id: 4,
-        name: "Epóxica Industrial",
-        description: "Recubrimiento epóxico para pisos industriales con alta resistencia química y mecánica.",
-        category: "special",
+        name: "Bolsa 30 kls - Graniplast Blanco",
+        description: "Revestimiento texturizado de alta resistencia ideal para fachadas y muros interiores o exteriores",
+        category: "exterior",
         price: "$150.000",
-        image: "https://via.placeholder.com/300x200?text=Epóxica+Industrial"
+        image: "images/Graniplast.png"
     },
     {
         id: 5,
-        name: "Viniltex Baños y Cocinas",
-        description: "Pintura especial para áreas húmedas con protección anti-hongos y anti-manchas.",
-        category: "interior",
+        name: "Caneca - Estuco",
+        description: "Es una pasta lista para usar, ideal para alisar y nivelar superficies antes de pintar. Permite obtener paredes lisas, libres de imperfecciones y con un acabado profesional.",
+        category: "special",
         price: "$88.000",
-        image: "https://via.placeholder.com/300x200?text=Viniltex+Baños+y+Cocinas"
+        image: "images/MockupEstuco.png"
     },
     {
         id: 6,
-        name: "Impermeabilizante Elástico",
-        description: "Recubrimiento elástico para techos y terrazas con garantía de 10 años contra filtraciones.",
-        category: "exterior",
+        name: "Caneca - Mastik",
+        description: "Es una masilla versátil y de alta calidad, perfecta para reparar, sellar y rellenar grietas, huecos o juntas en muros, techos y todo tipo de superficies",
+        category: "special",
         price: "$125.000",
-        image: "https://via.placeholder.com/300x200?text=Impermeabilizante+Elástico"
+        image: "images/MockupMastik.png"
     }
 ];
