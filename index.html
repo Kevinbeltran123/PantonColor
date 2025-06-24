@@ -145,22 +145,16 @@
                 </div>
                 
                 <!-- Project Information -->
-                <div class="project-info-grid">
+                <div class="project-info-section">
                     <!-- Colors Used Section -->
                     <div class="colors-section">
                         <h4 class="info-section-title">
                             <i class="fas fa-palette"></i>
                             Colores Utilizados
                         </h4>
-                        <div class="color-palette">
-                            <div class="color-item">
-                                <div class="color-swatch-large" style="background-color: #E30613;"></div>
-                                <div class="color-details">
-                                    <span class="color-name">Rojo Panton</span>
-                                    <span class="color-code">#E30613</span>
-                                    <span class="color-finish">Mate Premium</span>
-                                </div>
-                            </div>
+                        <div class="color-display">
+                            <div class="color-swatch-main" style="background-color: #E30613;"></div>
+                            <span class="color-code-display">#E30613</span>
                         </div>
                     </div>
                     
@@ -170,16 +164,14 @@
                             <i class="fas fa-paint-brush"></i>
                             Producto Utilizado
                         </h4>
-                        <div class="product-info">
-                            <div class="product-item">
-                                <div class="product-icon">
-                                    <i class="fas fa-paint-roller"></i>
-                                </div>
-                                <div class="product-details">
-                                    <span class="product-name">Vinilo Tipo 1</span>
-                                    <span class="product-description">Pintura vinílica de máxima duración</span>
-                                    <span class="product-coverage">Rendimiento: 8 m²/L</span>
-                                </div>
+                        <div class="product-display">
+                            <div class="product-icon-main">
+                                <i class="fas fa-paint-roller"></i>
+                            </div>
+                            <div class="product-info-main">
+                                <span class="product-name-main">Vinilo Tipo 1</span>
+                                <span class="product-description-main">Pintura vinílica de máxima duración</span>
+                                <span class="product-coverage-main">Rendimiento: 8 m²/L</span>
                             </div>
                         </div>
                     </div>
@@ -223,41 +215,52 @@
                     <h3>¿Tienes tu propio proyecto?</h3>
                     <p>Comparte tu transformación con Panton Color y inspira a otros</p>
                     
-                    <form class="upload-form" id="uploadForm">
-                        <div class="form-row">
+                    <form class="upload-form-grid" id="uploadForm">
+                        <!-- Left Column -->
+                        <div class="form-column-left">
                             <div class="form-group">
                                 <label for="projectName">Nombre del Proyecto</label>
                                 <input type="text" id="projectName" name="projectName" placeholder="Ej: Renovación de mi sala" required>
                             </div>
+                            
                             <div class="form-group">
                                 <label for="colorUsed">Color Utilizado</label>
-                                <input type="text" id="colorUsed" name="colorUsed" placeholder="Ej: Rojo Panton #E30613" required>
+                                <input type="text" id="colorUsed" name="colorUsed" placeholder="Ej: #E30613" required>
                             </div>
                         </div>
                         
-                        <div class="form-row">
+                        <!-- Middle Column -->
+                        <div class="form-column-middle">
                             <div class="form-group">
                                 <label for="beforePhoto">Foto Antes</label>
-                                <input type="file" id="beforePhoto" name="beforePhoto" accept="image/*" required>
-                                <span class="file-info">Formatos: JPG, PNG. Máx: 5MB</span>
+                                <div class="file-upload-wrapper">
+                                    <input type="file" id="beforePhoto" name="beforePhoto" accept="image/*" required>
+                                    <span class="file-info">Formatos: JPG, PNG. Máx: 5MB</span>
+                                </div>
                             </div>
+                            
                             <div class="form-group">
                                 <label for="afterPhoto">Foto Después</label>
-                                <input type="file" id="afterPhoto" name="afterPhoto" accept="image/*" required>
-                                <span class="file-info">Formatos: JPG, PNG. Máx: 5MB</span>
+                                <div class="file-upload-wrapper">
+                                    <input type="file" id="afterPhoto" name="afterPhoto" accept="image/*" required>
+                                    <span class="file-info">Formatos: JPG, PNG. Máx: 5MB</span>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="form-group full-width">
-                            <label for="testimonial">Tu Experiencia (Opcional)</label>
-                            <textarea id="testimonial" name="testimonial" placeholder="Cuéntanos sobre tu experiencia con nuestros productos..." rows="3"></textarea>
-                        </div>
-                        
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-upload"></i> Enviar Proyecto
-                            </button>
-                            <p class="upload-note">*Tu proyecto será revisado antes de publicarse en nuestra galería</p>
+                        <!-- Right Column -->
+                        <div class="form-column-right">
+                            <div class="form-group textarea-group">
+                                <label for="testimonial">Tu Experiencia (Opcional)</label>
+                                <textarea id="testimonial" name="testimonial" placeholder="Cuéntanos sobre tu experiencia con nuestros productos..." rows="4"></textarea>
+                            </div>
+                            
+                            <div class="form-actions-column">
+                                <button type="submit" class="btn btn-primary btn-submit-main">
+                                    <i class="fas fa-upload"></i> Enviar Proyecto
+                                </button>
+                                <p class="upload-note">*Tu proyecto será revisado antes de publicarse en nuestra galería</p>
+                            </div>
                         </div>
                     </form>
                 </div>
