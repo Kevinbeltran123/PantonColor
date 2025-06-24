@@ -7,6 +7,10 @@ let selectedColorName = 'Amarillo';
 let currentSlide = 0;
 const totalSlides = 6;
 
+// Gallery Slider Variables
+let isDragging = false;
+let sliderPosition = 50;
+
 // Mostrar/ocultar secciones con lógica mejorada de aislamiento
 function showSection(sectionId, event) {
     if (event) event.preventDefault();
@@ -65,7 +69,7 @@ function initializeSectionContent(sectionId) {
             renderProducts();
             break;
         case 'simulator':
-            initializeBeforeAfterGallery();
+            initializeGallerySlider();
             break;
         case 'projects':
             resetCarousel();
@@ -620,4 +624,129 @@ function addNavigationDebugging() {
     document.querySelectorAll('.section').forEach(section => {
         observer.observe(section, { attributes: true, attributeFilter: ['class'] });
     });
+}
+
+// =============================================
+// GALLERY SLIDER FUNCTIONALITY
+// =============================================
+
+// Initialize gallery slider functionality
+function initializeGallerySlider() {
+    const sliderButtons = document.querySelectorAll('.slider-button');
+    const imageContainers = document.querySelectorAll('.image-container');
+    
+    sliderButtons.forEach((button, index) => {
+        const container = imageContainers[index];
+        if (!container) return;
+        
+        const afterImage = container.querySelector('.after-image');
+        const sliderControl = container.querySelector('.slider-control');
+        
+        // Mouse events
+        button.addEventListener('mousedown', (e) => startDragging(e, container, afterImage, sliderControl));
+        
+        // Touch events for mobile
+        button.addEventListener('touchstart', (e) => startDragging(e, container, afterImage, sliderControl));
+        
+        // Container click for direct positioning
+        container.addEventListener('click', (e) => handleContainerClick(e, container, afterImage, sliderControl));
+    });
+    
+    // Global mouse and touch events
+    document.addEventListener('mousemove', handleDragging);
+    document.addEventListener('mouseup', stopDragging);
+    document.addEventListener('touchmove', handleDragging);
+    document.addEventListener('touchend', stopDragging);
+}
+
+function startDragging(e, container, afterImage, sliderControl) {
+    e.preventDefault();
+    isDragging = true;
+    
+    // Store references for the dragging session
+    window.currentContainer = container;
+    window.currentAfterImage = afterImage;
+    window.currentSliderControl = sliderControl;
+    
+    // Add dragging class for visual feedback
+    container.classList.add('dragging');
+}
+
+function handleDragging(e) {
+    if (!isDragging || !window.currentContainer) return;
+    
+    e.preventDefault();
+    
+    const container = window.currentContainer;
+    const afterImage = window.currentAfterImage;
+    const sliderControl = window.currentSliderControl;
+    
+    const rect = container.getBoundingClientRect();
+    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    const x = clientX - rect.left;
+    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    
+    updateSliderPosition(percentage, afterImage, sliderControl);
+}
+
+function stopDragging() {
+    if (!isDragging) return;
+    
+    isDragging = false;
+    
+    if (window.currentContainer) {
+        window.currentContainer.classList.remove('dragging');
+    }
+    
+    // Clear references
+    window.currentContainer = null;
+    window.currentAfterImage = null;
+    window.currentSliderControl = null;
+}
+
+function handleContainerClick(e, container, afterImage, sliderControl) {
+    if (isDragging) return;
+    
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    
+    updateSliderPosition(percentage, afterImage, sliderControl);
+}
+
+function updateSliderPosition(percentage, afterImage, sliderControl) {
+    // Update slider control position
+    sliderControl.style.left = `${percentage}%`;
+    
+    // Update after image clip path
+    afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
+    
+    // Store current position
+    sliderPosition = percentage;
+}
+
+// Share project functionality
+function shareProject(projectName) {
+    if (navigator.share) {
+        navigator.share({
+            title: `${projectName} - Panton Color`,
+            text: `Mira esta increíble transformación con productos Panton Color`,
+            url: window.location.href
+        }).catch(console.error);
+    } else {
+        // Fallback to clipboard
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            alert('¡Enlace copiado al portapapeles!');
+        }).catch(() => {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = url;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('¡Enlace copiado al portapapeles!');
+        });
+    }
 }
