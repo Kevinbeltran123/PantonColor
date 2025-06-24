@@ -576,6 +576,7 @@ document.addEventListener('DOMContentLoaded', function() {
     startCarousel();
     initializeScrollAnimations();
     initializeAccessibility();
+    initializeMobileMenu();
     
     // Agregar listeners adicionales para navegación
     document.querySelectorAll('.nav-link').forEach(link => {
@@ -719,4 +720,132 @@ function initializeStatsAnimation() {
         stat.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(stat);
     });
+}
+
+// =============================================
+// MOBILE MENU FUNCTIONALITY
+// =============================================
+
+// Mobile menu variables
+let mobileMenuOpen = false;
+
+// Initialize mobile menu functionality
+function initializeMobileMenu() {
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    // Toggle mobile menu
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+    }
+    
+    // Close mobile menu
+    if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+    }
+    
+    // Close menu when clicking overlay
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+    }
+    
+    // Close menu when pressing Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 1200 && mobileMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+}
+
+// Toggle mobile menu
+function toggleMobileMenu() {
+    if (mobileMenuOpen) {
+        closeMobileMenu();
+    } else {
+        openMobileMenu();
+    }
+}
+
+// Open mobile menu
+function openMobileMenu() {
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    mobileMenuOpen = true;
+    
+    // Update toggle button
+    if (mobileMenuToggle) {
+        mobileMenuToggle.classList.add('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+    }
+    
+    // Show overlay
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.classList.add('active');
+    }
+    
+    // Show menu
+    if (mobileMenu) {
+        mobileMenu.classList.add('active');
+        
+        // Focus first menu item for accessibility
+        const firstMenuItem = mobileMenu.querySelector('.mobile-menu-link');
+        if (firstMenuItem) {
+            setTimeout(() => {
+                firstMenuItem.focus();
+            }, 300);
+        }
+    }
+    
+    // Prevent body scrolling
+    document.body.style.overflow = 'hidden';
+}
+
+// Close mobile menu
+function closeMobileMenu() {
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    mobileMenuOpen = false;
+    
+    // Update toggle button
+    if (mobileMenuToggle) {
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+    }
+    
+    // Hide overlay
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.classList.remove('active');
+    }
+    
+    // Hide menu
+    if (mobileMenu) {
+        mobileMenu.classList.remove('active');
+    }
+    
+    // Restore body scrolling
+    document.body.style.overflow = '';
+    
+    // Return focus to toggle button
+    if (mobileMenuToggle) {
+        mobileMenuToggle.focus();
+    }
+}
+
+// Handle mobile menu link clicks
+function handleMobileMenuLinkClick(sectionId) {
+    showSection(sectionId);
+    closeMobileMenu();
 }
