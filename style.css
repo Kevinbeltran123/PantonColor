@@ -2173,17 +2173,26 @@ h5, h6 {
     width: 100%;
     height: 300px;
     overflow: hidden;
+    background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 50%, var(--light-gray) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius-sm);
 }
 
 .comparison-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
     transition: var(--transition);
+    background: transparent;
+    border-radius: var(--border-radius-sm);
 }
 
 .image-container:hover .comparison-image {
-    transform: scale(1.05);
+    transform: scale(1.02);
+    filter: brightness(1.1);
 }
 
 /* Image Overlays */
@@ -2758,6 +2767,11 @@ h5, h6 {
     
     .image-wrapper {
         height: 250px;
+        background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 50%, var(--light-gray) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--border-radius-sm);
     }
     
     .project-info-section {
@@ -2832,6 +2846,11 @@ h5, h6 {
     
     .image-wrapper {
         height: 220px;
+        background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 50%, var(--light-gray) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--border-radius-sm);
     }
     
     .image-comparison-grid {
