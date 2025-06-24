@@ -577,6 +577,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeScrollAnimations();
     initializeAccessibility();
     initializeMobileMenu();
+    initializeDesktopDropdown();
     
     // Agregar listeners adicionales para navegación
     document.querySelectorAll('.nav-link').forEach(link => {
@@ -720,6 +721,140 @@ function initializeStatsAnimation() {
         stat.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(stat);
     });
+}
+
+// =============================================
+// DESKTOP DROPDOWN MENU FUNCTIONALITY
+// =============================================
+
+// Desktop dropdown variables
+let desktopDropdownOpen = false;
+
+// Initialize desktop dropdown functionality
+function initializeDesktopDropdown() {
+    const desktopMenuToggle = document.getElementById('desktopMenuToggle');
+    const desktopDropdownClose = document.getElementById('desktopDropdownClose');
+    const desktopDropdownOverlay = document.getElementById('desktopDropdownOverlay');
+    const desktopDropdownMenu = document.getElementById('desktopDropdownMenu');
+    
+    // Toggle desktop dropdown
+    if (desktopMenuToggle) {
+        desktopMenuToggle.addEventListener('click', toggleDesktopDropdown);
+    }
+    
+    // Close desktop dropdown
+    if (desktopDropdownClose) {
+        desktopDropdownClose.addEventListener('click', closeDesktopDropdown);
+    }
+    
+    // Close dropdown when clicking overlay
+    if (desktopDropdownOverlay) {
+        desktopDropdownOverlay.addEventListener('click', closeDesktopDropdown);
+    }
+    
+    // Close dropdown when pressing Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && desktopDropdownOpen) {
+            closeDesktopDropdown();
+        }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth < 768 && desktopDropdownOpen) {
+            closeDesktopDropdown();
+        }
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (desktopDropdownOpen && !desktopDropdownMenu.contains(e.target) && !desktopMenuToggle.contains(e.target)) {
+            closeDesktopDropdown();
+        }
+    });
+}
+
+// Toggle desktop dropdown
+function toggleDesktopDropdown() {
+    if (desktopDropdownOpen) {
+        closeDesktopDropdown();
+    } else {
+        openDesktopDropdown();
+    }
+}
+
+// Open desktop dropdown
+function openDesktopDropdown() {
+    const desktopMenuToggle = document.getElementById('desktopMenuToggle');
+    const desktopDropdownOverlay = document.getElementById('desktopDropdownOverlay');
+    const desktopDropdownMenu = document.getElementById('desktopDropdownMenu');
+    
+    desktopDropdownOpen = true;
+    
+    // Update toggle button
+    if (desktopMenuToggle) {
+        desktopMenuToggle.classList.add('active');
+        desktopMenuToggle.setAttribute('aria-expanded', 'true');
+    }
+    
+    // Show overlay
+    if (desktopDropdownOverlay) {
+        desktopDropdownOverlay.classList.add('active');
+    }
+    
+    // Show menu with animation
+    if (desktopDropdownMenu) {
+        desktopDropdownMenu.classList.remove('closing');
+        desktopDropdownMenu.classList.add('active');
+        
+        // Focus first dropdown item for accessibility
+        const firstDropdownItem = desktopDropdownMenu.querySelector('.dropdown-item');
+        if (firstDropdownItem) {
+            setTimeout(() => {
+                firstDropdownItem.focus();
+            }, 300);
+        }
+    }
+}
+
+// Close desktop dropdown
+function closeDesktopDropdown() {
+    const desktopMenuToggle = document.getElementById('desktopMenuToggle');
+    const desktopDropdownOverlay = document.getElementById('desktopDropdownOverlay');
+    const desktopDropdownMenu = document.getElementById('desktopDropdownMenu');
+    
+    desktopDropdownOpen = false;
+    
+    // Update toggle button
+    if (desktopMenuToggle) {
+        desktopMenuToggle.classList.remove('active');
+        desktopMenuToggle.setAttribute('aria-expanded', 'false');
+    }
+    
+    // Hide overlay
+    if (desktopDropdownOverlay) {
+        desktopDropdownOverlay.classList.remove('active');
+    }
+    
+    // Hide menu with animation
+    if (desktopDropdownMenu) {
+        desktopDropdownMenu.classList.add('closing');
+        
+        setTimeout(() => {
+            desktopDropdownMenu.classList.remove('active', 'closing');
+        }, 300);
+    }
+    
+    // Return focus to toggle button
+    if (desktopMenuToggle) {
+        desktopMenuToggle.focus();
+    }
+}
+
+// Handle desktop dropdown link clicks
+function handleDesktopDropdownLinkClick(sectionId) {
+    showSection(sectionId);
+    closeDesktopDropdown();
 }
 
 // =============================================
