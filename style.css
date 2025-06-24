@@ -27,7 +27,7 @@
     --border: #E2E8F0;         /* Borde suave */
     
     /* Gradientes Profesionales */
-    --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
+    --gradient-primary: linear-gradient(135deg, #E30613 0%, #FF4757 50%, #E30613 100%);
     --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--medium-gray) 100%);
     --gradient-hero: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 25%, var(--secondary-light) 50%, var(--secondary) 100%);
     --gradient-light: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
@@ -4537,7 +4537,7 @@ footer {
 
 /* Enhanced Hero Section Styles */
 .hero {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, #E30613 0%, #B71C1C 100%);
     color: white;
     position: relative;
     overflow: hidden;
