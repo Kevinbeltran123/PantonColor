@@ -69,7 +69,7 @@ function initializeSectionContent(sectionId) {
             renderProducts();
             break;
         case 'simulator':
-            initializeGallerySlider();
+            initializeBeforeAfterSection();
             break;
         case 'projects':
             resetCarousel();
@@ -627,126 +627,96 @@ function addNavigationDebugging() {
 }
 
 // =============================================
-// GALLERY SLIDER FUNCTIONALITY
+// BEFORE & AFTER SECTION FUNCTIONALITY
 // =============================================
 
-// Initialize gallery slider functionality
-function initializeGallerySlider() {
-    const sliderButtons = document.querySelectorAll('.slider-button');
-    const imageContainers = document.querySelectorAll('.image-container');
+// Initialize before & after section
+function initializeBeforeAfterSection() {
+    console.log('Before & After section initialized');
     
-    sliderButtons.forEach((button, index) => {
-        const container = imageContainers[index];
-        if (!container) return;
+    // Initialize form submission if needed
+    const uploadForm = document.getElementById('uploadForm');
+    if (uploadForm) {
+        uploadForm.addEventListener('submit', handleUploadSubmission);
+    }
+    
+    // Add hover effects to image containers
+    const imageContainers = document.querySelectorAll('.image-container');
+    imageContainers.forEach(container => {
+        container.addEventListener('mouseenter', () => {
+            container.style.transform = 'translateY(-3px)';
+        });
         
-        const afterImage = container.querySelector('.after-image');
-        const sliderControl = container.querySelector('.slider-control');
-        
-        // Mouse events
-        button.addEventListener('mousedown', (e) => startDragging(e, container, afterImage, sliderControl));
-        
-        // Touch events for mobile
-        button.addEventListener('touchstart', (e) => startDragging(e, container, afterImage, sliderControl));
-        
-        // Container click for direct positioning
-        container.addEventListener('click', (e) => handleContainerClick(e, container, afterImage, sliderControl));
+        container.addEventListener('mouseleave', () => {
+            container.style.transform = 'translateY(0)';
+        });
     });
     
-    // Global mouse and touch events
-    document.addEventListener('mousemove', handleDragging);
-    document.addEventListener('mouseup', stopDragging);
-    document.addEventListener('touchmove', handleDragging);
-    document.addEventListener('touchend', stopDragging);
+    // Initialize stats animation on scroll
+    initializeStatsAnimation();
 }
 
-function startDragging(e, container, afterImage, sliderControl) {
-    e.preventDefault();
-    isDragging = true;
-    
-    // Store references for the dragging session
-    window.currentContainer = container;
-    window.currentAfterImage = afterImage;
-    window.currentSliderControl = sliderControl;
-    
-    // Add dragging class for visual feedback
-    container.classList.add('dragging');
-}
-
-function handleDragging(e) {
-    if (!isDragging || !window.currentContainer) return;
-    
+// Handle upload form submission
+function handleUploadSubmission(e) {
     e.preventDefault();
     
-    const container = window.currentContainer;
-    const afterImage = window.currentAfterImage;
-    const sliderControl = window.currentSliderControl;
+    const formData = new FormData(e.target);
+    const projectName = formData.get('projectName');
+    const colorUsed = formData.get('colorUsed');
+    const beforePhoto = formData.get('beforePhoto');
+    const afterPhoto = formData.get('afterPhoto');
+    const testimonial = formData.get('testimonial');
     
-    const rect = container.getBoundingClientRect();
-    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-    const x = clientX - rect.left;
-    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
-    
-    updateSliderPosition(percentage, afterImage, sliderControl);
-}
-
-function stopDragging() {
-    if (!isDragging) return;
-    
-    isDragging = false;
-    
-    if (window.currentContainer) {
-        window.currentContainer.classList.remove('dragging');
+    // Validate required fields
+    if (!projectName || !colorUsed || !beforePhoto || !afterPhoto) {
+        alert('Por favor completa todos los campos obligatorios.');
+        return;
     }
     
-    // Clear references
-    window.currentContainer = null;
-    window.currentAfterImage = null;
-    window.currentSliderControl = null;
+    // Construct WhatsApp message
+    let message = `¡Hola! Quiero compartir mi proyecto de transformación:\n\n`;
+    message += `📝 Proyecto: ${projectName}\n`;
+    message += `🎨 Color usado: ${colorUsed}\n`;
+    
+    if (testimonial) {
+        message += `💭 Mi experiencia: ${testimonial}\n`;
+    }
+    
+    message += `\n📸 Tengo fotos del antes y después para compartir.\n`;
+    message += `¿Podrían ayudarme a publicarlo en su galería?`;
+    
+    // Open WhatsApp with the message
+    const whatsappUrl = `https://wa.me/573134312484?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+    
+    // Show success message
+    alert('¡Perfecto! Te hemos redirigido a WhatsApp para que puedas enviar tu proyecto. Nuestro equipo lo revisará pronto.');
+    
+    // Reset form
+    e.target.reset();
 }
 
-function handleContainerClick(e, container, afterImage, sliderControl) {
-    if (isDragging) return;
+// Initialize stats animation
+function initializeStatsAnimation() {
+    const stats = document.querySelectorAll('.stat-item');
     
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
-    
-    updateSliderPosition(percentage, afterImage, sliderControl);
-}
-
-function updateSliderPosition(percentage, afterImage, sliderControl) {
-    // Update slider control position
-    sliderControl.style.left = `${percentage}%`;
-    
-    // Update after image clip path
-    afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
-    
-    // Store current position
-    sliderPosition = percentage;
-}
-
-// Share project functionality
-function shareProject(projectName) {
-    if (navigator.share) {
-        navigator.share({
-            title: `${projectName} - Panton Color`,
-            text: `Mira esta increíble transformación con productos Panton Color`,
-            url: window.location.href
-        }).catch(console.error);
-    } else {
-        // Fallback to clipboard
-        const url = window.location.href;
-        navigator.clipboard.writeText(url).then(() => {
-            alert('¡Enlace copiado al portapapeles!');
-        }).catch(() => {
-            // Fallback for older browsers
-            const textArea = document.createElement('textarea');
-            textArea.value = url;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            alert('¡Enlace copiado al portapapeles!');
+    // Create intersection observer for stats animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
         });
-    }
+    }, {
+        threshold: 0.5
+    });
+    
+    // Observe all stat items
+    stats.forEach(stat => {
+        stat.style.opacity = '0';
+        stat.style.transform = 'translateY(20px)';
+        stat.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(stat);
+    });
 }

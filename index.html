@@ -28,7 +28,7 @@
             </a>
                 <ul class="nav-links">
                     <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('products', event)"><i class="fas fa-paint-brush"></i> Productos</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('simulator', event)"><i class="fas fa-images"></i> Galería</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('simulator', event)"><i class="fas fa-images"></i> Antes y Después</a></li>
                     <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('calculator', event)"><i class="fas fa-calculator"></i> Calculadora</a></li>
                     <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('projects', event)"><i class="fas fa-building"></i> Proyectos</a></li>
                     <li class="nav-item"><a href="#" class="nav-link" onclick="showSection('about', event)"><i class="fas fa-info-circle"></i> Nosotros</a></li>
@@ -69,7 +69,7 @@
                 
                 <div class="hero-btns">
                     <a href="#" class="btn btn-primary" onclick="showSection('simulator', event)">
-                        <i class="fas fa-images"></i> Ver Galería
+                        <i class="fas fa-images"></i> Ver Antes y Después
                     </a>
                     <a href="#" class="btn btn-secondary" onclick="showSection('products', event)">
                         <i class="fas fa-shopping-cart"></i> Ver Catálogo
@@ -110,81 +110,161 @@
         </div>
     </section>
 
-    <!-- Gallery Section - Antes y Después -->
-    <section id="simulator" class="gallery-section section">
+    <!-- Before & After Section -->
+    <section id="simulator" class="before-after-section section">
         <div class="container">
-            <div class="gallery-header">
-                <h2 class="section-title">Galería de Transformaciones</h2>
-                <p class="section-subtitle">Descubre el impacto real de nuestros productos en espacios auténticos. Cada proyecto cuenta una historia de transformación.</p>
+            <!-- Section Header -->
+            <div class="before-after-header">
+                <h2 class="section-title">Antes y Después</h2>
+                <p class="section-subtitle">Descubre el impacto real de nuestros productos en espacios auténticos. Ve la transformación que podemos lograr juntos.</p>
             </div>
             
-            <!-- Gallery Grid -->
-            <div class="gallery-grid">
-                <!-- Template: Proyecto Ejemplo -->
-                <div class="gallery-item">
-                    <div class="comparison-slider">
-                        <div class="image-container">
-                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sala antes - paredes blancas" class="before-image">
-                            <img src="https://images.unsplash.com/photo-1566908829550-e6883a9a03e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sala después - pared de acento naranja" class="after-image">
-                            <div class="slider-control">
-                                <div class="slider-line"></div>
-                                <div class="slider-button">
-                                    <i class="fas fa-arrows-alt-h"></i>
-                                </div>
+            <!-- Example Project Template -->
+            <div class="example-project">
+                <h3 class="example-title">Transformación de Sala - Proyecto Ejemplo</h3>
+                
+                <!-- Before/After Image Containers -->
+                <div class="image-comparison-grid">
+                    <div class="image-container before-container">
+                        <div class="image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sala antes - paredes blancas" class="comparison-image">
+                            <div class="image-overlay">
+                                <span class="image-label">ANTES</span>
                             </div>
-                        </div>
-                        <div class="comparison-labels">
-                            <span class="label-before">Antes</span>
-                            <span class="label-after">Después</span>
                         </div>
                     </div>
                     
-                    <div class="project-details">
-                        <h3 class="project-title">Transformación de Sala</h3>
-                        <div class="color-showcase">
-                            <div class="color-swatch" style="background-color: #E30613;"></div>
-                            <div class="color-info">
-                                <span class="color-name">Rojo Panton</span>
-                                <span class="color-code">#E30613</span>
+                    <div class="image-container after-container">
+                        <div class="image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1566908829550-e6883a9a03e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sala después - pared de acento roja" class="comparison-image">
+                            <div class="image-overlay">
+                                <span class="image-label">DESPUÉS</span>
                             </div>
                         </div>
-                        <p class="project-description">Pared de acento que transforma completamente el ambiente del living, creando un punto focal dinámico y moderno con nuestro color insignia.</p>
-                        
-                        <div class="project-meta">
-                            <div class="meta-item">
-                                <i class="fas fa-paint-brush"></i>
-                                <span>Vinilo Tipo 1</span>
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-clock"></i>
-                                <span>1 día</span>
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-home"></i>
-                                <span>Residencial</span>
+                    </div>
+                </div>
+                
+                <!-- Project Information -->
+                <div class="project-info-grid">
+                    <!-- Colors Used Section -->
+                    <div class="colors-section">
+                        <h4 class="info-section-title">
+                            <i class="fas fa-palette"></i>
+                            Colores Utilizados
+                        </h4>
+                        <div class="color-palette">
+                            <div class="color-item">
+                                <div class="color-swatch-large" style="background-color: #E30613;"></div>
+                                <div class="color-details">
+                                    <span class="color-name">Rojo Panton</span>
+                                    <span class="color-code">#E30613</span>
+                                    <span class="color-finish">Mate Premium</span>
+                                </div>
                             </div>
                         </div>
-                        
-                        <div class="client-quote">
-                            <i class="fas fa-quote-left"></i>
-                            <p>"El cambio fue increíble. Nuestra sala pasó de ser un espacio frío a ser el corazón cálido de nuestro hogar."</p>
-                            <cite>- María González, Bogotá</cite>
+                    </div>
+                    
+                    <!-- Product Used Section -->
+                    <div class="product-section">
+                        <h4 class="info-section-title">
+                            <i class="fas fa-paint-brush"></i>
+                            Producto Utilizado
+                        </h4>
+                        <div class="product-info">
+                            <div class="product-item">
+                                <div class="product-icon">
+                                    <i class="fas fa-paint-roller"></i>
+                                </div>
+                                <div class="product-details">
+                                    <span class="product-name">Vinilo Tipo 1</span>
+                                    <span class="product-description">Pintura vinílica de máxima duración</span>
+                                    <span class="product-coverage">Rendimiento: 8 m²/L</span>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="project-actions">
-                            <a href="https://wa.me/573134312484?text=Hola,%20quiero%20información%20sobre%20el%20proyecto%20de%20transformación%20de%20sala" class="btn btn-primary">
-                                <i class="fab fa-whatsapp"></i> Consultar Proyecto
-                            </a>
-                            <button class="btn btn-secondary" onclick="shareProject('Transformación de Sala')">
-                                <i class="fas fa-share-alt"></i> Compartir
-                            </button>
+                    </div>
+                </div>
+                
+                <!-- Project Stats -->
+                <div class="project-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <span class="stat-value">1 día</span>
+                        <span class="stat-label">Duración</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-ruler"></i>
+                        <span class="stat-value">25 m²</span>
+                        <span class="stat-label">Área pintada</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-home"></i>
+                        <span class="stat-value">Residencial</span>
+                        <span class="stat-label">Tipo</span>
+                    </div>
+                </div>
+                
+                <!-- Client Testimonial -->
+                <div class="testimonial-box">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"El cambio fue increíble. Nuestra sala pasó de ser un espacio frío a ser el corazón cálido de nuestro hogar. El equipo de Panton Color fue muy profesional."</p>
+                        <div class="testimonial-author">
+                            <span class="author-name">María González</span>
+                            <span class="author-location">Bogotá, Colombia</span>
                         </div>
                     </div>
                 </div>
             </div>
             
+            <!-- User Upload Section - PRESERVED FUNCTIONALITY -->
+            <div class="upload-section">
+                <div class="upload-container">
+                    <h3>¿Tienes tu propio proyecto?</h3>
+                    <p>Comparte tu transformación con Panton Color y inspira a otros</p>
+                    
+                    <form class="upload-form" id="uploadForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="projectName">Nombre del Proyecto</label>
+                                <input type="text" id="projectName" name="projectName" placeholder="Ej: Renovación de mi sala" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="colorUsed">Color Utilizado</label>
+                                <input type="text" id="colorUsed" name="colorUsed" placeholder="Ej: Rojo Panton #E30613" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="beforePhoto">Foto Antes</label>
+                                <input type="file" id="beforePhoto" name="beforePhoto" accept="image/*" required>
+                                <span class="file-info">Formatos: JPG, PNG. Máx: 5MB</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="afterPhoto">Foto Después</label>
+                                <input type="file" id="afterPhoto" name="afterPhoto" accept="image/*" required>
+                                <span class="file-info">Formatos: JPG, PNG. Máx: 5MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="testimonial">Tu Experiencia (Opcional)</label>
+                            <textarea id="testimonial" name="testimonial" placeholder="Cuéntanos sobre tu experiencia con nuestros productos..." rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-upload"></i> Enviar Proyecto
+                            </button>
+                            <p class="upload-note">*Tu proyecto será revisado antes de publicarse en nuestra galería</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
             <!-- Call to Action -->
-            <div class="gallery-cta">
+            <div class="section-cta">
                 <div class="cta-content">
                     <h3>¿Listo para tu transformación?</h3>
                     <p>Nuestro equipo está preparado para ayudarte a crear el espacio de tus sueños</p>
